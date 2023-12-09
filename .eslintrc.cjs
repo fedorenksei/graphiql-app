@@ -9,7 +9,12 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.cjs',
+    'tailwind.config.js',
+    'postcss.config.js',
+  ],
   settings: {
     'import/resolver': {
       typescript: {},
