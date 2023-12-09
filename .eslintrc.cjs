@@ -14,6 +14,7 @@ module.exports = {
     '.eslintrc.cjs',
     'tailwind.config.js',
     'postcss.config.js',
+    'vite.config.ts',
   ],
   settings: {
     'import/resolver': {
@@ -34,5 +35,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'react/function-component-definition': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };
