@@ -10,11 +10,17 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
+    tsconfigRootDir: './',
   },
-  plugins: ['react-refresh', 'jsx-a11y'],
+  plugins: ['@typescript-eslint', 'import', 'react-refresh', 'jsx-a11y'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
