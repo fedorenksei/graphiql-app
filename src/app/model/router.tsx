@@ -1,6 +1,6 @@
+import { Main } from '@/pages/Main';
+import { Welcome } from '@/pages/Welcome';
 import { createBrowserRouter } from 'react-router-dom';
-import { Main } from '../../pages/Main';
-import { Welcome } from '../../pages/Welcome';
 
 export const router = createBrowserRouter([
   {
