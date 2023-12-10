@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from '../model/router';
 import { store } from '../model/store/store';
 import './App.css';
+import '../model/firebase/firebase';
 
 export const App = () => {
   return (
