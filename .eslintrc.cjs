@@ -32,6 +32,13 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'],
+      },
+    ],
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'react/function-component-definition': 'off',
