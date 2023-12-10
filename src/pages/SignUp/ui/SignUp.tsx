@@ -1,5 +1,8 @@
+import { useAuth } from '@/shared/useAuth/useAuth';
 import { SignUpForm } from '@/widgets/SignUpForm';
+import { Navigate } from 'react-router-dom';
 
 export const SignUp = () => {
-  return <SignUpForm />;
+  const { isAuth } = useAuth();
+  return isAuth ? <Navigate to="/" /> : <SignUpForm />;
 };

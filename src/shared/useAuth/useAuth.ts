@@ -1,4 +1,5 @@
 import { loginUser, logoutUser } from '@/app/model/store/slices/userSlice';
+import { getAuth, signOut } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../hooks';
 
 export const useAuth = () => {
@@ -8,7 +9,14 @@ export const useAuth = () => {
   const login = (userEmail: string, userUid: string) =>
     dispatch(loginUser({ email: userEmail, uid: userUid }));
 
-  const logout = () => dispatch(logoutUser());
+  const logout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(logoutUser());
+      })
+      .catch(console.error);
+  };
 
   const isAuth = !!uid;
 

@@ -1,5 +1,6 @@
 import { Main } from '@/pages/Main';
-import { SignUp } from '@/pages/SignUp/ui/SignUp';
+import { SignIn } from '@/pages/SignIn';
+import { SignUp } from '@/pages/SignUp';
 import { Welcome } from '@/pages/Welcome';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -15,5 +16,9 @@ export const router = createBrowserRouter([
   {
     path: '/signup',
     element: <SignUp />,
+  },
+  {
+    path: '/signin',
+    element: <SignIn />,
   },
 ]);
