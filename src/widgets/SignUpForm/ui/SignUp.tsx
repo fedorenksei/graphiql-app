@@ -1,5 +1,4 @@
 import { RegisterOptions, useForm } from 'react-hook-form';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAuth } from '@/shared/useAuth/useAuth';
 import { SignUpFormType } from '../model/types';
 
@@ -8,7 +7,6 @@ const formClasses = 'max-w-xs flex flex-col gap-4';
 const inputClasses = 'border-red-100 border-2 w-full';
 
 export const SignUpForm = () => {
-  const auth = getAuth();
   const { login } = useAuth();
   const defaultValues: SignUpFormType = {
     email: '',
@@ -59,11 +57,7 @@ export const SignUpForm = () => {
     };
 
   const onSubmit = (data: SignUpFormType) => {
-    createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then(({ user }) => {
-        login(user.email!, user.uid);
-      })
-      .catch(console.error);
+    login(data.email, data.password);
   };
 
   return (
