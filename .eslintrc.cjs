@@ -39,6 +39,15 @@ module.exports = {
         ignorePropertyModificationsFor: ['state'],
       },
     ],
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'enforce',
+        custom: 'enforce',
+        explicitSpread: 'enforce',
+        exceptions: ['input'],
+      },
+    ],
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'react/function-component-definition': 'off',
