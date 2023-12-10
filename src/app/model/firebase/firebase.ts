@@ -1,4 +1,7 @@
 import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { store } from '../store/store';
+import { loginUser, logoutUser } from '../store/slices/userSlice';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -10,3 +13,12 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    store.dispatch(loginUser({ email: user.email, uid: user.uid }));
+  } else {
+    store.dispatch(logoutUser());
+  }
+});
