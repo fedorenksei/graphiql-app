@@ -32,6 +32,17 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'default',
+        format: ['camelCase', 'PascalCase'],
+      },
+      {
+        selector: ['enum', 'enumMember'],
+        format: ['UPPER_CASE'],
+      },
+    ],
     'no-param-reassign': [
       'error',
       {
