@@ -2,12 +2,13 @@ import { RegisterOptions, useForm } from 'react-hook-form';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { SignUpFormType } from '../model/types';
 
-const containerClasses = 'min-h-screen flex justify-center items-center';
+const containerClasses =
+  'min-h-screen flex justify-center items-center bg-white';
 const formClasses = 'max-w-xs flex flex-col gap-4';
 const inputClasses = 'border-red-100 border-2 w-full';
 
 export const SignUpForm = () => {
-  const { login } = useAuth();
+  const { signUp } = useAuth();
   const defaultValues: SignUpFormType = {
     email: '',
     password: '',
@@ -57,7 +58,7 @@ export const SignUpForm = () => {
     };
 
   const onSubmit = (data: SignUpFormType) => {
-    login(data.email, data.password);
+    signUp(data.email, data.password);
   };
 
   return (

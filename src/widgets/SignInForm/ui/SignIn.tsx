@@ -2,7 +2,8 @@ import { RegisterOptions, useForm } from 'react-hook-form';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { SignInFormType } from '../model/types';
 
-const containerClasses = 'min-h-screen flex justify-center items-center';
+const containerClasses =
+  'min-h-screen flex justify-center items-center bg-white';
 const formClasses = 'max-w-xs flex flex-col gap-4';
 const inputClasses = 'border-red-100 border-2 w-full';
 

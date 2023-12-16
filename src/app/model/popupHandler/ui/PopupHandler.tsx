@@ -1,13 +1,21 @@
 import { POPUP_NAMES } from '@/shared/constants/popupNames';
+import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { PopupLayout } from '@/shared/ui/PopupLayout';
 import { SignInForm } from '@/widgets/SignInForm/ui/SignIn';
 import { SignUpForm } from '@/widgets/SignUpForm';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export const PopupHandler = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { isAuth } = useAuth();
   const popupName = searchParams.get('popup');
+  useEffect(() => {
+    if (isAuth && popupName) {
+      searchParams.delete('popup');
+      setSearchParams(searchParams, { replace: true });
+    }
+  });
 
   let elem: ReactNode;
 

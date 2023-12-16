@@ -16,13 +16,13 @@ export const Welcome = () => {
         <>
           <Link
             className="text-blue-700"
-            to="/signup"
+            to="/?popup=sign-up"
           >
             sign up
           </Link>
           <Link
             className="text-blue-700"
-            to="/signin"
+            to="/?popup=sign-in"
           >
             sign in
           </Link>

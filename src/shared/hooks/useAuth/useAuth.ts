@@ -3,6 +3,7 @@ import {
   getAuth,
   signOut,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../hooks';
 
@@ -12,6 +13,14 @@ export const useAuth = () => {
   const auth = getAuth();
 
   const login = (userEmail: string, userPassword: string) => {
+    signInWithEmailAndPassword(auth, userEmail, userPassword)
+      .then(({ user }) => {
+        dispatch(loginUser({ email: user.email, uid: user.uid }));
+      })
+      .catch(console.error);
+  };
+
+  const signUp = (userEmail: string, userPassword: string) => {
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
       .then(({ user }) => {
         dispatch(loginUser({ email: user.email, uid: user.uid }));
@@ -35,5 +44,6 @@ export const useAuth = () => {
     uid,
     login,
     logout,
+    signUp,
   };
 };
