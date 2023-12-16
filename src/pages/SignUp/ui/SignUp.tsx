@@ -1,4 +1,4 @@
-import { useAuth } from '@/shared/useAuth/useAuth';
+import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { SignUpForm } from '@/widgets/SignUpForm';
 import { Navigate } from 'react-router-dom';
 

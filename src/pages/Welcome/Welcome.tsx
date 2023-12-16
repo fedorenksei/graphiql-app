@@ -1,4 +1,4 @@
-import { useAuth } from '@/shared/useAuth/useAuth';
+import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Link } from 'react-router-dom';
 
 export const Welcome = () => {

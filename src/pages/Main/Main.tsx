@@ -1,4 +1,4 @@
-import { useAuth } from '@/shared/useAuth/useAuth';
+import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Link, Navigate } from 'react-router-dom';
 import { Button } from '@nextui-org/button';
 

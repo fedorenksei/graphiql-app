@@ -1,5 +1,5 @@
 import { RegisterOptions, useForm } from 'react-hook-form';
-import { useAuth } from '@/shared/useAuth/useAuth';
+import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { SignInFormType } from '../model/types';
 
 const containerClasses = 'min-h-screen flex justify-center items-center';
