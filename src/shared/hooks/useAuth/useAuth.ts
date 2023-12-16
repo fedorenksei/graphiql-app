@@ -12,12 +12,13 @@ export const useAuth = () => {
   const { email, uid } = useAppSelector((store) => store.userReducer);
   const auth = getAuth();
 
-  const login = (userEmail: string, userPassword: string) => {
-    signInWithEmailAndPassword(auth, userEmail, userPassword)
+  const login = async (userEmail: string, userPassword: string) => {
+    return signInWithEmailAndPassword(auth, userEmail, userPassword)
       .then(({ user }) => {
         dispatch(loginUser({ email: user.email, uid: user.uid }));
+        return true;
       })
-      .catch(console.error);
+      .catch(() => false);
   };
 
   const signUp = (userEmail: string, userPassword: string) => {
