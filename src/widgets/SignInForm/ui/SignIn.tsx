@@ -6,12 +6,14 @@ import { RootInput } from '@/shared/ui/RootInput';
 import { emailValidation } from '@/shared/constants/validators/email';
 import { passwordValidation } from '@/shared/constants/validators/password';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SignInFormType } from '../model/types';
 
 export const SignInForm = () => {
   const { login } = useAuth();
   const [loading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const navigate = useNavigate();
 
   const defaultValues: SignInFormType = {
     email: '',
@@ -32,16 +34,24 @@ export const SignInForm = () => {
     const res = await login(data.email, data.password);
     if (!res) {
       setError('Invalid login or password');
+    } else {
+      navigate('/main');
     }
     setIsLoading(false);
   };
 
   return (
-    <div className="flex justify-center items-center bg-slate-800 p-10 text-white rounded-xl">
+    <div
+      className="flex justify-center items-center bg-slate-800 p-10 text-white rounded-xl cursor-default"
+      onClick={(e) => e.stopPropagation()}
+      role="button"
+      tabIndex={0}
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-xs flex flex-col gap-4 relative"
       >
+        <h1 className="text-2xl text-center mb-1">Sign in</h1>
         <RootInput
           formFieldProps={{
             register,

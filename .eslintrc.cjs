@@ -32,6 +32,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'jsx-a11y/click-events-have-key-events': ['off'],
     '@typescript-eslint/naming-convention': [
       'error',
       {
