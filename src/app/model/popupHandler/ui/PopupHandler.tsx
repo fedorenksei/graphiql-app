@@ -22,5 +22,5 @@ export const PopupHandler = () => {
       elem = null;
   }
 
-  return <PopupLayout>{elem}</PopupLayout>;
+  return <PopupLayout isShown={elem !== null}>{elem}</PopupLayout>;
 };

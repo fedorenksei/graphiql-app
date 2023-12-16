@@ -1,24 +1,28 @@
 import { Main } from '@/pages/Main';
-import { SignIn } from '@/pages/SignIn';
-import { SignUp } from '@/pages/SignUp';
 import { Welcome } from '@/pages/Welcome';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
+import { PopupHandler } from './popupHandler/ui/PopupHandler';
+import { store } from './store/store';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Welcome />,
+    element: (
+      <>
+        <Welcome />
+        <PopupHandler />
+      </>
+    ),
   },
   {
     path: '/main',
     element: <Main />,
-  },
-  {
-    path: '/signup',
-    element: <SignUp />,
-  },
-  {
-    path: '/signin',
-    element: <SignIn />,
+    loader: () => {
+      const isUserAuth = !!store.getState().userReducer.uid;
+      if (!isUserAuth) {
+        return redirect('/?popup=sign-up');
+      }
+      return null;
+    },
   },
 ]);
