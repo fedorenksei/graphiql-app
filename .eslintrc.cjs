@@ -56,7 +56,7 @@ module.exports = {
         html: 'enforce',
         custom: 'enforce',
         explicitSpread: 'enforce',
-        exceptions: ['input'],
+        exceptions: ['RootInput', 'RootPasswordInput', 'Input', 'input'],
       },
     ],
     'react/react-in-jsx-scope': 'off',

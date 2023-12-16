@@ -1,5 +1,6 @@
 import { RegisterOptions, useForm } from 'react-hook-form';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
+import { Button } from '@nextui-org/button';
 import { SignUpFormType } from '../model/types';
 
 const containerClasses =
@@ -89,12 +90,12 @@ export const SignUpForm = () => {
           placeholder="repeat password"
         />
         {errors.repeatPassword && <span>{errors.repeatPassword.message}</span>}
-        <button
-          disabled={!isFormValid}
+        <Button
+          isDisabled={!isFormValid}
           type="submit"
         >
           Sign up
-        </button>
+        </Button>
       </form>
     </div>
   );
