@@ -1,51 +1,50 @@
 import { Input, InputProps } from '@nextui-org/react';
 import React from 'react';
-import { RegisterOptions, UseFormRegister } from 'react-hook-form';
-import { SignInFormType } from '@/widgets/SignInForm/model/types';
+import { FormFieldProps } from '@/shared/types/forms';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
 import { EyeFilledIcon } from './EyeFilledIcon';
 
 interface ExtendedProps extends InputProps {
-  register: UseFormRegister<SignInFormType>;
+  formFieldProps: FormFieldProps | null;
 }
 
-export const RootPasswordInput = ({ register, ...props }: ExtendedProps) => {
+export const RootPasswordInput = (props: ExtendedProps) => {
   const [isVisible, setIsVisible] = React.useState(false);
-
-  const passwordValidation: RegisterOptions<SignInFormType, 'password'> = {
-    required: {
-      value: true,
-      message: 'Field is required',
-    },
-    pattern: {
-      value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
-      message: 'Password is invalid',
-    },
-  };
-
-  const registered = register('password', passwordValidation);
+  let registered = {};
+  const { formFieldProps } = props;
+  if (formFieldProps) {
+    const { register, validator } = formFieldProps;
+    registered = register('password', validator);
+  }
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   return (
-    <Input
-      variant="bordered"
-      endContent={
-        <button
-          className="focus:outline-none"
-          type="button"
-          onClick={toggleVisibility}
-        >
-          {isVisible ? (
-            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          ) : (
-            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-          )}
-        </button>
-      }
-      type={isVisible ? 'text' : 'password'}
-      className="max-w-xs"
-      {...registered}
-      {...props}
-    />
+    <div className="relative">
+      <Input
+        variant="bordered"
+        endContent={
+          <button
+            className="focus:outline-none"
+            type="button"
+            onClick={toggleVisibility}
+          >
+            {isVisible ? (
+              <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+            ) : (
+              <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+            )}
+          </button>
+        }
+        type={isVisible ? 'text' : 'password'}
+        className="max-w-xs mb-6"
+        {...registered}
+        {...props}
+      />
+      {formFieldProps?.message && (
+        <span className="absolute bottom-0 left-2 text-red-600 text-[12px]">
+          {formFieldProps.message}
+        </span>
+      )}
+    </div>
   );
 };

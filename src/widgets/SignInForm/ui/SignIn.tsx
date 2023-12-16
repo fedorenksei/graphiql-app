@@ -3,6 +3,8 @@ import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Button } from '@nextui-org/button';
 import { RootPasswordInput } from '@/shared/ui/RootPasswordInput';
 import { RootInput } from '@/shared/ui/RootInput';
+import { emailValidation } from '@/shared/constants/validators/email';
+import { passwordValidation } from '@/shared/constants/validators/password';
 import { SignInFormType } from '../model/types';
 
 const containerClasses =
@@ -11,10 +13,12 @@ const formClasses = 'max-w-xs flex flex-col gap-4';
 
 export const SignInForm = () => {
   const { login } = useAuth();
+
   const defaultValues: SignInFormType = {
     email: '',
     password: '',
   };
+
   const form = useForm<SignInFormType>({
     defaultValues,
     mode: 'all',
@@ -35,17 +39,25 @@ export const SignInForm = () => {
         className={formClasses}
       >
         <RootInput
-          register={register}
+          formFieldProps={{
+            register,
+            validator: emailValidation,
+            name: 'email',
+            message: errors.email?.message,
+          }}
           type="text"
           placeholder="email"
           inputMode="email"
         />
-        {errors.email && <span>{errors.email.message}</span>}
         <RootPasswordInput
-          register={register}
+          formFieldProps={{
+            register,
+            validator: passwordValidation,
+            name: 'password',
+            message: errors.password?.message,
+          }}
           placeholder="password"
         />
-        {errors.password && <span>{errors.password.message}</span>}
         <Button
           isDisabled={!isFormValid}
           type="submit"

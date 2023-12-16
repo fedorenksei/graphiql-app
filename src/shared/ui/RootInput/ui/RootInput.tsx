@@ -1,30 +1,30 @@
-import { SignInFormType } from '@/widgets/SignInForm/model/types';
+import { FormFieldProps } from '@/shared/types/forms';
 import { Input, InputProps } from '@nextui-org/react';
-import { RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 interface ExtendedProps extends InputProps {
-  register: UseFormRegister<SignInFormType>;
+  formFieldProps: FormFieldProps | null;
 }
 
-export const RootInput = ({ register, ...props }: ExtendedProps) => {
-  const emailValidation: RegisterOptions<SignInFormType, 'email'> = {
-    required: {
-      value: true,
-      message: 'Field is required',
-    },
-    pattern: {
-      value:
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      message: 'Email is invalid',
-    },
-  };
-
-  const registered = register('email' as keyof SignInFormType, emailValidation);
+export const RootInput = (props: ExtendedProps) => {
+  const { formFieldProps } = props;
+  let registered = {};
+  if (formFieldProps) {
+    const { register, validator } = formFieldProps;
+    registered = register('email', validator);
+  }
   return (
-    <Input
-      variant="bordered"
-      {...registered}
-      {...props}
-    />
+    <div className="relative">
+      <Input
+        variant="bordered"
+        {...registered}
+        {...props}
+        className="mb-6"
+      />
+      {formFieldProps?.message && (
+        <span className="absolute bottom-0 left-2 text-red-600 text-[12px]">
+          {formFieldProps.message}
+        </span>
+      )}
+    </div>
   );
 };
