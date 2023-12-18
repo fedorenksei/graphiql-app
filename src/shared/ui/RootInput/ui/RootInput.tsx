@@ -1,5 +1,6 @@
 import { FormFieldProps } from '@/shared/types/forms';
 import { Input, InputProps } from '@nextui-org/react';
+import { useFormContext } from 'react-hook-form';
 
 interface ExtendedProps extends InputProps {
   formFieldProps: FormFieldProps | null;
@@ -8,9 +9,11 @@ interface ExtendedProps extends InputProps {
 export const RootInput = (props: ExtendedProps) => {
   const { formFieldProps } = props;
   let registered = {};
+  const { register } = useFormContext();
   if (formFieldProps) {
-    const { register, validator } = formFieldProps;
-    registered = register('email', validator);
+    const { validator, name } = formFieldProps;
+    registered = register(name, validator);
+    // registered = register(name, validator);
   }
   return (
     <div className="relative">

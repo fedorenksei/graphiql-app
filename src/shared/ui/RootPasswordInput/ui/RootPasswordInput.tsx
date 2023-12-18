@@ -1,6 +1,7 @@
 import { Input, InputProps } from '@nextui-org/react';
 import React from 'react';
 import { FormFieldProps } from '@/shared/types/forms';
+import { useFormContext } from 'react-hook-form';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
 import { EyeFilledIcon } from './EyeFilledIcon';
 
@@ -12,9 +13,10 @@ export const RootPasswordInput = (props: ExtendedProps) => {
   const [isVisible, setIsVisible] = React.useState(false);
   let registered = {};
   const { formFieldProps } = props;
+  const { register } = useFormContext();
   if (formFieldProps) {
-    const { register, validator } = formFieldProps;
-    registered = register('password', validator);
+    const { validator, name } = formFieldProps;
+    registered = register(name, validator);
   }
 
   const toggleVisibility = () => setIsVisible(!isVisible);

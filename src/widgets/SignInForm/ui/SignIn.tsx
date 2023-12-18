@@ -1,4 +1,5 @@
-import { useForm } from 'react-hook-form';
+/* eslint-disable react/jsx-props-no-spreading */
+import { FormProvider, useForm } from 'react-hook-form';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Button } from '@nextui-org/button';
 import { RootPasswordInput } from '@/shared/ui/RootPasswordInput';
@@ -25,7 +26,7 @@ export const SignInForm = () => {
     mode: 'all',
   });
 
-  const { register, handleSubmit, formState } = form;
+  const { handleSubmit, formState } = form;
   const { errors, isDirty, isValid } = formState;
   const isFormValid = !(!isDirty || !isValid);
 
@@ -47,45 +48,45 @@ export const SignInForm = () => {
       role="button"
       tabIndex={0}
     >
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="max-w-xs flex flex-col gap-4 relative"
-      >
-        <h1 className="text-2xl text-center mb-1">Sign in</h1>
-        <RootInput
-          formFieldProps={{
-            register,
-            validator: emailValidation,
-            name: 'email',
-            message: errors.email?.message,
-          }}
-          type="text"
-          placeholder="email"
-          inputMode="email"
-        />
-        <RootPasswordInput
-          formFieldProps={{
-            register,
-            validator: passwordValidation,
-            name: 'password',
-            message: errors.password?.message,
-          }}
-          placeholder="password"
-        />
-        <Button
-          isDisabled={!isFormValid}
-          isLoading={loading}
-          className="mb-8"
-          type="submit"
+      <FormProvider {...form}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="max-w-xs flex flex-col gap-4 relative"
         >
-          Sign in
-        </Button>
-        {!!error && (
-          <span className="absolute bottom-0 text-center w-full text-red-600 text-[16px]">
-            {error}
-          </span>
-        )}
-      </form>
+          <h1 className="text-2xl text-center mb-1">Sign in</h1>
+          <RootInput
+            formFieldProps={{
+              validator: emailValidation,
+              name: 'email',
+              message: errors.email?.message,
+            }}
+            type="text"
+            placeholder="email"
+            inputMode="email"
+          />
+          <RootPasswordInput
+            formFieldProps={{
+              validator: passwordValidation,
+              name: 'password',
+              message: errors.password?.message,
+            }}
+            placeholder="password"
+          />
+          <Button
+            isDisabled={!isFormValid}
+            isLoading={loading}
+            className="mb-8"
+            type="submit"
+          >
+            Sign in
+          </Button>
+          {!!error && (
+            <span className="absolute bottom-0 text-center w-full text-red-600 text-[16px]">
+              {error}
+            </span>
+          )}
+        </form>
+      </FormProvider>
     </div>
   );
 };
