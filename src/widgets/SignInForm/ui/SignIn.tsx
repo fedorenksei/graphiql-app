@@ -35,7 +35,7 @@ export const SignInForm = () => {
     setIsLoading(true);
     const res = await login(data.email, data.password);
     if (!res) {
-      setError('Invalid login or password');
+      setError('invalid login or password');
     } else {
       navigate('/main');
     }

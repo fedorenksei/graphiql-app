@@ -43,7 +43,7 @@ export const RootPasswordInput = (props: ExtendedProps) => {
         {...props}
       />
       {formFieldProps?.message && (
-        <span className="absolute bottom-0 left-2 text-red-600 text-[12px]">
+        <span className="absolute bottom-0 left-2 text-red-600 text-[11px]">
           {formFieldProps.message}
         </span>
       )}
