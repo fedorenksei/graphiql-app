@@ -96,7 +96,7 @@ export const SignInForm = () => {
             className="text-center duration-300 w-full underline text-[12px] opacity-80 hover:opacity-100"
             type="button"
           >
-            I&apos;m already have an account
+            I don&apos;t have an account
           </button>
         </form>
       </FormProvider>
