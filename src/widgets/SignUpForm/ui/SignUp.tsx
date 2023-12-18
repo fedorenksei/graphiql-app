@@ -1,15 +1,22 @@
-import { RegisterOptions, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Button } from '@nextui-org/button';
+import { RootInput } from '@/shared/ui/RootInput';
+import { emailValidation } from '@/shared/constants/validators/email';
+import { RootPasswordInput } from '@/shared/ui/RootPasswordInput';
+import { createRepeatPasswordValidator } from '@/shared/constants/validators/repeatPassword';
+import { passwordValidation } from '@/shared/constants/validators/password';
+import { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { POPUP_NAMES } from '@/shared/constants/popupNames';
 import { SignUpFormType } from '../model/types';
-
-const containerClasses =
-  'min-h-screen flex justify-center items-center bg-white';
-const formClasses = 'max-w-xs flex flex-col gap-4';
-const inputClasses = 'border-red-100 border-2 w-full';
 
 export const SignUpForm = () => {
   const { signUp } = useAuth();
+  const [loading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const [error, setError] = useState<string>('');
+  const [searchParams, setSearchParams] = useSearchParams();
   const defaultValues: SignUpFormType = {
     email: '',
     password: '',
@@ -20,83 +27,90 @@ export const SignUpForm = () => {
     mode: 'all',
   });
 
-  const { register, handleSubmit, formState, trigger, watch } = form;
+  const { handleSubmit, formState, trigger, watch } = form;
   const { errors, isDirty, isValid } = formState;
   const isFormValid = !(!isDirty || !isValid);
 
-  const emailValidation: RegisterOptions<SignUpFormType, 'email'> = {
-    required: {
-      value: true,
-      message: 'Field is required',
-    },
-    pattern: {
-      value:
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-      message: 'Email is invalid',
-    },
+  const onSubmit = async (data: SignUpFormType) => {
+    setIsLoading(true);
+    const res = await signUp(data.email, data.password);
+    if (typeof res === 'string') {
+      setError(res);
+    } else {
+      navigate('/main');
+    }
+    setIsLoading(false);
   };
 
-  const passwordValidation: RegisterOptions<SignUpFormType, 'password'> = {
-    onChange: () => trigger('repeatPassword'),
-    required: {
-      value: true,
-      message: 'Field is required',
-    },
-    pattern: {
-      value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
-      message: 'Password is invalid',
-    },
-  };
-
-  const repeatPasswordValidation: RegisterOptions<SignUpFormType, 'password'> =
-    {
-      validate: (val: string) => {
-        if (watch('password') !== val) {
-          return 'Passwords is not the same';
-        }
-        return undefined;
-      },
-    };
-
-  const onSubmit = (data: SignUpFormType) => {
-    signUp(data.email, data.password);
+  const goToSignIn = () => {
+    searchParams.set('popup', POPUP_NAMES.SIGN_IN);
+    setSearchParams(searchParams);
   };
 
   return (
-    <div className={containerClasses}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={formClasses}
-      >
-        <input
-          {...register('email', emailValidation)}
-          className={inputClasses}
-          type="text"
-          placeholder="email"
-          inputMode="email"
-        />
-        {errors.email && <span>{errors.email.message}</span>}
-        <input
-          {...register('password', passwordValidation)}
-          className={inputClasses}
-          type="password"
-          placeholder="password"
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-        <input
-          {...register('repeatPassword', repeatPasswordValidation)}
-          className={inputClasses}
-          type="password"
-          placeholder="repeat password"
-        />
-        {errors.repeatPassword && <span>{errors.repeatPassword.message}</span>}
-        <Button
-          isDisabled={!isFormValid}
-          type="submit"
+    <div
+      className="flex justify-center items-center bg-slate-800 p-10 text-white rounded-xl cursor-default"
+      onClick={(e) => e.stopPropagation()}
+      role="button"
+      tabIndex={0}
+    >
+      <FormProvider {...form}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="max-w-xs flex flex-col gap-4 relative"
         >
-          Sign up
-        </Button>
-      </form>
+          <h1 className="text-2xl text-center mb-1">Sign up</h1>
+          <RootInput
+            formFieldProps={{
+              validator: emailValidation,
+              name: 'email',
+              message: errors.email?.message,
+            }}
+            type="text"
+            placeholder="email"
+            inputMode="email"
+          />
+          <RootPasswordInput
+            formFieldProps={{
+              validator: {
+                ...passwordValidation,
+                onChange: () => trigger('repeatPassword'),
+              },
+              name: 'password',
+              message: errors.password?.message,
+            }}
+            placeholder="password"
+          />
+          <RootPasswordInput
+            formFieldProps={{
+              validator: createRepeatPasswordValidator(watch),
+              name: 'repeatPassword',
+              message: errors.repeatPassword?.message,
+            }}
+            placeholder="repeat password"
+          />
+          <Button
+            isDisabled={!isFormValid}
+            isLoading={loading}
+            className="mb-8"
+            type="submit"
+          >
+            Sign up
+          </Button>
+          {!!error && (
+            <span className="absolute bottom-8 text-center w-full text-red-600 text-[14px]">
+              {error}
+            </span>
+          )}
+          <button
+            onClick={goToSignIn}
+            className="text-center duration-300 w-full underline text-[12px] opacity-80 hover:opacity-100"
+            type="button"
+          >
+            I&apos;m already have an account
+          </button>
+        </form>
+      </FormProvider>
     </div>
   );
 };

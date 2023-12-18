@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { FormProvider, useForm } from 'react-hook-form';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Button } from '@nextui-org/button';
@@ -7,7 +6,8 @@ import { RootInput } from '@/shared/ui/RootInput';
 import { emailValidation } from '@/shared/constants/validators/email';
 import { passwordValidation } from '@/shared/constants/validators/password';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { POPUP_NAMES } from '@/shared/constants/popupNames';
 import { SignInFormType } from '../model/types';
 
 export const SignInForm = () => {
@@ -15,6 +15,7 @@ export const SignInForm = () => {
   const [loading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const defaultValues: SignInFormType = {
     email: '',
@@ -39,6 +40,11 @@ export const SignInForm = () => {
       navigate('/main');
     }
     setIsLoading(false);
+  };
+
+  const goToSignUp = () => {
+    searchParams.set('popup', POPUP_NAMES.SIGN_UP);
+    setSearchParams(searchParams);
   };
 
   return (
@@ -81,10 +87,17 @@ export const SignInForm = () => {
             Sign in
           </Button>
           {!!error && (
-            <span className="absolute bottom-0 text-center w-full text-red-600 text-[16px]">
+            <span className="absolute bottom-8 text-center w-full text-red-600 text-[14px]">
               {error}
             </span>
           )}
+          <button
+            onClick={goToSignUp}
+            className="text-center duration-300 w-full underline text-[12px] opacity-80 hover:opacity-100"
+            type="button"
+          >
+            I&apos;m already have an account
+          </button>
         </form>
       </FormProvider>
     </div>

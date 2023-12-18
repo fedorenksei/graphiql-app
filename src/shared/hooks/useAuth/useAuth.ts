@@ -22,11 +22,14 @@ export const useAuth = () => {
   };
 
   const signUp = (userEmail: string, userPassword: string) => {
-    createUserWithEmailAndPassword(auth, userEmail, userPassword)
+    return createUserWithEmailAndPassword(auth, userEmail, userPassword)
       .then(({ user }) => {
         dispatch(loginUser({ email: user.email, uid: user.uid }));
+        return true;
       })
-      .catch(console.error);
+      .catch((e) => {
+        return e.code.slice(e.code.indexOf('/') + 1).replaceAll('-', ' ');
+      });
   };
 
   const logout = () => {
