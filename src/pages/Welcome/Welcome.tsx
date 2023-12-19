@@ -1,14 +1,21 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@nextui-org/button';
+import { LanguageContext } from '../../shared/LanguageProvider';
 
 export const Welcome = () => {
+  const { language, setLanguage, words } = useContext(LanguageContext);
+
   return (
     <div>
-      Welcome page
+      {words.welcome}
+      <Button onClick={() => setLanguage(language === 'en' ? 'ru' : 'en')}>
+        {language === 'en' ? 'Русский' : 'English'}
+      </Button>
       <Link to="/main">
-        <Button>to Main</Button>
+        <Button>{words.main}</Button>
       </Link>
-      <Button>TEST</Button>
+      <Button>{words.about}</Button>
     </div>
   );
 };
