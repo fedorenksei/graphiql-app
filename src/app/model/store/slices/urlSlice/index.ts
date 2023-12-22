@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { UrlType } from './types';
 
 const initialState: UrlType = {
-  baseUrl: '',
+  baseUrl: null,
 };
 
 const { reducer, actions } = createSlice({
