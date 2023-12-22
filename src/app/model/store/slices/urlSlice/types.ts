@@ -1,3 +1,3 @@
 export type UrlType = {
-  baseUrl: string;
+  baseUrl: string | null;
 };
