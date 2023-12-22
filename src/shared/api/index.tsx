@@ -6,9 +6,28 @@ export class AppApi {
 
   private url: string;
 
+  private createReqForFieldSchema: (fieldName: string) => void;
+
   constructor() {
     this.url =
       store.getState().urlReducer.baseUrl || import.meta.env.VITE_DEFAULT_URL;
+
+    this.createReqForFieldSchema = (fieldName: string) => {
+      return `{
+          __type(name: "${fieldName}") {
+            name
+            description
+            fields {
+              name
+              description
+              type {
+                name
+                kind
+              }
+            }
+          }
+        }`;
+    };
   }
 
   public static getInstance() {
@@ -26,6 +45,26 @@ export class AppApi {
         method: 'POST',
         body: JSON.stringify({
           query: `{__schema {types {name}}}`,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      data = await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+    return data;
+  }
+
+  public async getFieldSchema(fieldName: string) {
+    let data = null;
+
+    try {
+      const res = await fetch(this.url, {
+        method: 'POST',
+        body: JSON.stringify({
+          query: this.createReqForFieldSchema(fieldName),
         }),
         headers: {
           'Content-Type': 'application/json',

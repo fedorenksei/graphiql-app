@@ -10,6 +10,7 @@ export const App = () => {
   const api = AppApi.getInstance();
   const getSchema = async () => {
     console.log(await api.getDefaultSchema());
+    console.log(await api.getFieldSchema('Character'));
   };
 
   getSchema();
