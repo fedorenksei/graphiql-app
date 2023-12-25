@@ -66,6 +66,7 @@ export const SignInForm = () => {
               name: 'email',
               message: errors.email?.message,
             }}
+            data-testid="sign-in-email"
             type="text"
             placeholder="email"
             inputMode="email"
@@ -76,9 +77,11 @@ export const SignInForm = () => {
               name: 'password',
               message: errors.password?.message,
             }}
+            data-testid="sign-in-password"
             placeholder="password"
           />
           <Button
+            data-testid="sign-in-button"
             isDisabled={!isFormValid}
             isLoading={loading}
             className="mb-8"

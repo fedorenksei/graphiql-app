@@ -103,6 +103,7 @@ export const SignUpForm = () => {
             </span>
           )}
           <button
+            data-testid="sign-up-button"
             onClick={goToSignIn}
             className="text-center duration-300 w-full underline text-[12px] opacity-80 hover:opacity-100"
             type="button"
