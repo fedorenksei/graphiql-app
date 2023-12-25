@@ -1,10 +1,10 @@
 import { Main } from '@/pages/Main';
 import { Welcome } from '@/pages/Welcome';
 import { createBrowserRouter } from 'react-router-dom';
-import { NotFound } from '@/pages/NotFound/ui/NotFound';
+import { NotFound } from '@/pages/NotFound';
 import { PopupHandler } from './popupHandler/ui/PopupHandler';
 
-export const router = createBrowserRouter([
+export const routerConfig = [
   {
     path: '/',
     element: (
@@ -27,4 +27,6 @@ export const router = createBrowserRouter([
     path: '*',
     element: <NotFound />,
   },
-]);
+];
+
+export const router = createBrowserRouter(routerConfig);
