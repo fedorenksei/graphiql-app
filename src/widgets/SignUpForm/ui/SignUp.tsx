@@ -66,6 +66,7 @@ export const SignUpForm = () => {
               name: 'email',
               message: errors.email?.message,
             }}
+            data-testid="sign-up-email"
             type="text"
             placeholder="email"
             inputMode="email"
@@ -79,6 +80,7 @@ export const SignUpForm = () => {
               name: 'password',
               message: errors.password?.message,
             }}
+            data-testid="sign-up-password"
             placeholder="password"
           />
           <RootPasswordInput
@@ -87,6 +89,7 @@ export const SignUpForm = () => {
               name: 'repeatPassword',
               message: errors.repeatPassword?.message,
             }}
+            data-testid="sign-up-repeat"
             placeholder="repeat password"
           />
           <Button
@@ -94,6 +97,7 @@ export const SignUpForm = () => {
             isLoading={loading}
             className="mb-8"
             type="submit"
+            data-testid="sign-up-button"
           >
             Sign up
           </Button>
@@ -103,7 +107,6 @@ export const SignUpForm = () => {
             </span>
           )}
           <button
-            data-testid="sign-up-button"
             onClick={goToSignIn}
             className="text-center duration-300 w-full underline text-[12px] opacity-80 hover:opacity-100"
             type="button"
