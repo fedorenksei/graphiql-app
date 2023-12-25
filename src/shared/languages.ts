@@ -1,13 +1,6 @@
-export interface Language {
-  main: string;
-  about: string;
-  login: string;
-  welcome: string;
-}
-
 export interface Languages {
-  en: Language;
-  ru: Language;
+  en: Record<string, string>;
+  ru: Record<string, string>;
 }
 
 const languages: Languages = {

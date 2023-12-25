@@ -1,10 +1,10 @@
 import { ReactNode, createContext, useMemo, useState } from 'react';
-import languages, { Languages, Language } from './languages';
+import languages, { Languages } from './languages';
 
 interface LanguageContextType {
   language: keyof Languages;
   setLanguage: (language: keyof Languages) => void;
-  words: Language;
+  words: Record<string, string>;
 }
 
 export const LanguageContext = createContext<LanguageContextType>({
