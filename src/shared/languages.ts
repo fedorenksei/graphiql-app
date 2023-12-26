@@ -5,16 +5,24 @@ export interface Languages {
 
 const languages: Languages = {
   en: {
-    main: 'Main',
+    main: 'to main',
     about: 'About',
     login: 'Login',
     welcome: 'Welcom page',
+    signup: 'sign up',
+    signin: 'sign in',
+    YouLoggedAs: 'You logged in as',
+    Logout: 'Logout',
   },
   ru: {
-    main: 'Главная',
+    main: 'на главную',
     about: 'О нас',
     login: 'Вход',
     welcome: 'Страница приветствия',
+    signup: 'зарегистрироваться',
+    signin: 'войти',
+    YouLoggedAs: 'Вы вошли как',
+    Logout: 'Выйти',
   },
 };
 
