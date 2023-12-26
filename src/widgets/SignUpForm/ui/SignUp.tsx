@@ -6,12 +6,14 @@ import { emailValidation } from '@/shared/constants/validators/email';
 import { RootPasswordInput } from '@/shared/ui/RootPasswordInput';
 import { createRepeatPasswordValidator } from '@/shared/constants/validators/repeatPassword';
 import { passwordValidation } from '@/shared/constants/validators/password';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { POPUP_NAMES } from '@/shared/constants/popupNames';
 import { SignUpFormType } from '../model/types';
+import { LanguageContext } from '../../../shared/LanguageProvider';
 
 export const SignUpForm = () => {
+  const { words } = useContext(LanguageContext);
   const { signUp } = useAuth();
   const [loading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -59,7 +61,7 @@ export const SignUpForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="max-w-xs flex flex-col gap-4 relative"
         >
-          <h1 className="text-2xl text-center mb-1">Sign up</h1>
+          <h1 className="text-2xl text-center mb-1">{words.signup}</h1>
           <RootInput
             formFieldProps={{
               validator: emailValidation,
@@ -67,7 +69,7 @@ export const SignUpForm = () => {
               message: errors.email?.message,
             }}
             type="text"
-            placeholder="email"
+            placeholder={words.email}
             inputMode="email"
           />
           <RootPasswordInput
@@ -79,7 +81,7 @@ export const SignUpForm = () => {
               name: 'password',
               message: errors.password?.message,
             }}
-            placeholder="password"
+            placeholder={words.password}
           />
           <RootPasswordInput
             formFieldProps={{
@@ -87,7 +89,7 @@ export const SignUpForm = () => {
               name: 'repeatPassword',
               message: errors.repeatPassword?.message,
             }}
-            placeholder="repeat password"
+            placeholder={words.repeatPassword}
           />
           <Button
             isDisabled={!isFormValid}
@@ -95,7 +97,7 @@ export const SignUpForm = () => {
             className="mb-8"
             type="submit"
           >
-            Sign up
+            {words.signup}
           </Button>
           {!!error && (
             <span className="absolute bottom-8 text-center w-full text-red-600 text-[14px]">
@@ -107,7 +109,7 @@ export const SignUpForm = () => {
             className="text-center duration-300 w-full underline text-[12px] opacity-80 hover:opacity-100"
             type="button"
           >
-            I&apos;m already have an account
+            {words.haveAccount}
           </button>
         </form>
       </FormProvider>
