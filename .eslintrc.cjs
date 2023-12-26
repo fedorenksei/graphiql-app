@@ -32,6 +32,40 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'jsx-a11y/click-events-have-key-events': ['off'],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'default',
+        format: ['camelCase', 'PascalCase'],
+      },
+      {
+        selector: ['enum', 'enumMember'],
+        format: ['UPPER_CASE'],
+      },
+    ],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'],
+      },
+    ],
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'enforce',
+        custom: 'enforce',
+        explicitSpread: 'enforce',
+        exceptions: [
+          'RootInput',
+          'RootPasswordInput',
+          'Input',
+          'input',
+          'FormProvider',
+        ],
+      },
+    ],
     'react/react-in-jsx-scope': 'off',
     'import/prefer-default-export': 'off',
     'react/function-component-definition': 'off',

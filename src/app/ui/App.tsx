@@ -4,6 +4,7 @@ import { router } from '../model/router';
 import { store } from '../model/store/store';
 import { LanguageProvider } from '../../shared/LanguageProvider';
 import './App.css';
+import '../model/firebase/firebase';
 
 export const App = () => {
   return (
