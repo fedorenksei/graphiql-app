@@ -5,12 +5,14 @@ import { RootPasswordInput } from '@/shared/ui/RootPasswordInput';
 import { RootInput } from '@/shared/ui/RootInput';
 import { emailValidation } from '@/shared/constants/validators/email';
 import { passwordValidation } from '@/shared/constants/validators/password';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { POPUP_NAMES } from '@/shared/constants/popupNames';
 import { SignInFormType } from '../model/types';
+import { LanguageContext } from '../../../shared/LanguageProvider';
 
 export const SignInForm = () => {
+  const { words } = useContext(LanguageContext);
   const { login } = useAuth();
   const [loading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
@@ -59,7 +61,7 @@ export const SignInForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="max-w-xs flex flex-col gap-4 relative"
         >
-          <h1 className="text-2xl text-center mb-1">Sign in</h1>
+          <h1 className="text-2xl text-center mb-1">{words.signin}</h1>
           <RootInput
             formFieldProps={{
               validator: emailValidation,
@@ -67,7 +69,7 @@ export const SignInForm = () => {
               message: errors.email?.message,
             }}
             type="text"
-            placeholder="email"
+            placeholder={words.email}
             inputMode="email"
           />
           <RootPasswordInput
@@ -76,7 +78,7 @@ export const SignInForm = () => {
               name: 'password',
               message: errors.password?.message,
             }}
-            placeholder="password"
+            placeholder={words.password}
           />
           <Button
             isDisabled={!isFormValid}
@@ -84,7 +86,7 @@ export const SignInForm = () => {
             className="mb-8"
             type="submit"
           >
-            Sign in
+            {words.signin}
           </Button>
           {!!error && (
             <span className="absolute bottom-8 text-center w-full text-red-600 text-[14px]">
@@ -96,7 +98,7 @@ export const SignInForm = () => {
             className="text-center duration-300 w-full underline text-[12px] opacity-80 hover:opacity-100"
             type="button"
           >
-            I don&apos;t have an account
+            {words.dontAccount}
           </button>
         </form>
       </FormProvider>
