@@ -13,14 +13,25 @@ export type DefaultFieldsType = {
   name: string;
   description: string;
   type: {
-    kind: string;
-    name: string;
+    kind: string | null;
+    name: string | null;
+    ofType: ofType | null;
   };
 };
 
+type ofType = {
+  kind: string | null;
+  name: string | null;
+  ofType: ofType | null;
+};
+
+export type FieldsType = {
+  fields: DefaultFieldsType[] | null;
+  inputFields: DefaultFieldsType[] | null;
+  description: string;
+  name: string;
+};
+
 export type DefaultFieldsReq = {
-  __type: {
-    fields: DefaultFieldsType[];
-    name: string;
-  };
+  __type: FieldsType;
 };
