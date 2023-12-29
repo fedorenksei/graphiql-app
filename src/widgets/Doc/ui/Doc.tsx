@@ -1,11 +1,41 @@
 import { RootSpinner } from '@/shared/ui/Spinner';
 import clsx from 'clsx';
 import { Suspense, lazy, useState } from 'react';
+import { DOC_PARTS } from '@/shared/types/doc';
+import { AllFields } from '../components/AllFields';
 
 const AllTypes = lazy(() => import('../components/AllTypes'));
 
 export const Doc = () => {
   const [isDocOpen, setIsDocsOpen] = useState<boolean>(false);
+  const [choosenType, setChoosenType] = useState<string>('');
+  const [currDocPart, setCurrDocPart] = useState<DOC_PARTS>(DOC_PARTS.SCHEMA);
+  let component = null;
+
+  const openFields = (typeName: string) => {
+    setCurrDocPart(DOC_PARTS.FIELDS);
+    setChoosenType(typeName);
+  };
+
+  switch (currDocPart) {
+    case DOC_PARTS.SCHEMA:
+      component = (
+        <Suspense fallback={<RootSpinner />}>
+          <AllTypes openFields={openFields} />
+        </Suspense>
+      );
+      break;
+    case DOC_PARTS.FIELDS:
+      component = (
+        <Suspense fallback={<RootSpinner />}>
+          <AllFields fieldName={choosenType} />
+        </Suspense>
+      );
+      break;
+    default:
+      component = null;
+  }
+
   return (
     <div className="relative w-screen h-screen">
       <div
@@ -42,11 +72,7 @@ export const Doc = () => {
         >
           {isDocOpen ? 'hide schema' : 'show schema'}
         </button>
-        {isDocOpen && (
-          <Suspense fallback={<RootSpinner />}>
-            <AllTypes />
-          </Suspense>
-        )}
+        {isDocOpen && component}
       </div>
     </div>
   );

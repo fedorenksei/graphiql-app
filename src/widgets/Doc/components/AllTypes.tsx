@@ -4,7 +4,11 @@ import { RootSpinner } from '@/shared/ui/Spinner';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
-const AllTypes = () => {
+type AllTypesProps = {
+  openFields: (typeName: string) => void;
+};
+
+const AllTypes = ({ openFields }: AllTypesProps) => {
   const [categories, setCategories] = useState<DefaultSchemaType[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const api = AppApi.getInstance();
@@ -15,7 +19,7 @@ const AllTypes = () => {
       if (res) {
         // eslint-disable-next-line no-underscore-dangle
         const filtered = res.data.__schema.types
-          .filter((item: Record<string, string>) => !item.name.startsWith('__'))
+          .filter((item: DefaultSchemaType) => !item.name.startsWith('__'))
           .slice(1);
         setCategories(filtered);
       }
@@ -33,6 +37,9 @@ const AllTypes = () => {
         <span
           className="text-[#EB9C00] cursor-pointer hover:underline underline-offset-2"
           key={item.name}
+          onClick={() => openFields(item.name)}
+          role="button"
+          tabIndex={0}
         >
           {item.name}
         </span>
