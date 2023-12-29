@@ -13,20 +13,55 @@ export class AppApi {
       store.getState().urlReducer.baseUrl || import.meta.env.VITE_DEFAULT_URL;
 
     this.createReqForFieldSchema = (fieldName: string) => {
-      return `{
-          __type(name: "${fieldName}") {
+      return `query IntrospectionQuery {
+        __type(name: "${fieldName}") {
+          name
+          description
+          fields {
             name
             description
-            fields {
+            type {
               name
-              description
-              type {
-                name
+              kind  
+              ofType {
                 kind
+                name
+                ofType {
+                  kind
+                  name
+                  ofType {
+                    kind
+                    name
+                    ofType {
+                      kind
+                      name
+                      ofType {
+                        kind
+                        name
+                        ofType {
+                          kind
+                          name
+                          ofType {
+                            kind
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
-        }`;
+          inputFields {
+            name
+            description
+            type {
+              name
+            }
+          }
+        }
+      }`;
     };
   }
 

@@ -17,6 +17,10 @@ export const Doc = () => {
     setChoosenType(typeName);
   };
 
+  const toMain = () => {
+    setCurrDocPart(DOC_PARTS.SCHEMA);
+  };
+
   switch (currDocPart) {
     case DOC_PARTS.SCHEMA:
       component = (
@@ -28,7 +32,11 @@ export const Doc = () => {
     case DOC_PARTS.FIELDS:
       component = (
         <Suspense fallback={<RootSpinner />}>
-          <AllFields fieldName={choosenType} />
+          <AllFields
+            fieldName={choosenType}
+            changeFieldName={openFields}
+            goBack={toMain}
+          />
         </Suspense>
       );
       break;
