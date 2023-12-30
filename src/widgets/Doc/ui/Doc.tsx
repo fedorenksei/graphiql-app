@@ -3,6 +3,7 @@ import { RootSpinner } from '@/shared/ui/Spinner';
 import clsx from 'clsx';
 import { MouseEvent, Suspense, lazy, useRef, useState } from 'react';
 import { DOC_PARTS } from '@/shared/types/doc';
+import { Button } from '@nextui-org/button';
 import { AllFields } from '../components/AllFields';
 
 import s from './Doc.module.scss';
@@ -16,7 +17,6 @@ export const Doc = () => {
   const [choosenType, setChoosenType] = useState<string>('');
   const [currDocPart, setCurrDocPart] = useState<DOC_PARTS>(DOC_PARTS.SCHEMA);
   const [history, setHistory] = useState<Array<() => void>>([]);
-  console.log(history);
   let component = null;
 
   const pushHistory = () => {
@@ -28,6 +28,7 @@ export const Doc = () => {
   };
 
   const goBack = () => {
+    if (history.length === 0) return;
     const cb = history.pop();
     if (cb) {
       cb();
@@ -60,7 +61,6 @@ export const Doc = () => {
           <AllFields
             fieldName={choosenType}
             changeFieldName={openFields}
-            goBack={toMain}
           />
         </Suspense>
       );
@@ -99,7 +99,7 @@ export const Doc = () => {
         'absolute',
         'top-0',
         !isDocOpen && '-translate-x-full',
-        'h-screen',
+        'min-h-screen',
         'transition-all',
         'duration-400',
         'bg-slate-800',
@@ -131,35 +131,66 @@ export const Doc = () => {
       >
         {isDocOpen ? 'hide schema' : 'show schema'}
       </button>
-      <button
-        type="button"
-        onClick={goBack}
-        className={clsx(
-          "content-['show_schema']",
-          '[writing-mode:vertical-lr]',
-          'text-center',
-          'leading-10',
-          'transition-all',
-          'duration-300',
-          isDocOpen
-            ? 'right-0 bg-white text-slate-800 rounded-l-xl'
-            : `-right-10 bg-slate-800 text-white rounded-r-xl ${s.glowing}`,
-          'w-10',
-          'h-40',
-          'absolute',
-          'top-56',
-          'z-10',
-          'select-none',
-        )}
-      >
-        back
-      </button>
       <div
         onMouseDown={handleMouseDown}
         draggable={false}
         className="h-52 absolute right-1 top-[220px] w-[8px] cursor-col-resize"
       >
         <div className="border-r border-l border-warning h-full w-[4px] mx-auto" />
+      </div>
+      <div className="flex justify-around px-10 py-5">
+        <Button
+          type="button"
+          disabled={currDocPart === DOC_PARTS.SCHEMA}
+          className={clsx(
+            'text-slate-800',
+            'bg-[#EB9C00]',
+            'shadow-inner',
+            'shadow-md',
+            'leading-9',
+            'w-8',
+            'flex',
+            'justify-center',
+            'items-center',
+            'rounded-sm',
+            'text-slate-800',
+            'hover:bg-[#EB9C00]',
+            'hover:opacity-1',
+            'enabled:hover:scale-[1.1]',
+            'enabled:hover:opacity-100',
+            'disabled:opacity-50',
+            'disabled:hover:opacity-50',
+          )}
+          onClick={toMain}
+        >
+          <span className="text-xl">Home</span>
+        </Button>
+        <Button
+          type="button"
+          disabled={history.length === 0}
+          className={clsx(
+            'text-slate-800',
+            'bg-[#EB9C00]',
+            'shadow-inner',
+            'shadow-md',
+            'leading-9',
+            'w-8',
+            'flex',
+            'justify-center',
+            'items-center',
+            'rounded-sm',
+            'text-slate-800',
+            'hover:bg-[#EB9C00]',
+            'hover:opacity-1',
+            'enabled:hover:scale-[1.1]',
+            'enabled:hover:opacity-100',
+            'disabled:opacity-50',
+            'disabled:hover:opacity-50',
+          )}
+          onClick={goBack}
+        >
+          <span className="text-xl ">Back</span>
+        </Button>
       </div>
       {isDocOpen && component}
     </div>
