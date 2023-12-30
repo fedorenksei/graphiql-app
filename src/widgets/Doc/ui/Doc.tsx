@@ -186,10 +186,11 @@ export const Doc = () => {
             'enabled:hover:opacity-100',
             'disabled:opacity-50',
             'disabled:hover:opacity-50',
+            'font-extrabold',
           )}
           onClick={goBack}
         >
-          <span className="text-xl ">Back</span>
+          <span className="text-[28px]">&#8592;</span>
         </Button>
       </div>
       {isDocOpen && component}

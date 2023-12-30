@@ -36,7 +36,9 @@ export const AllFields = ({
   const filtered = parseFields(fields);
 
   return (
-    <div className={clsx('overflow-y-auto', 'max-h-screen', s.rtl)}>
+    <div
+      className={clsx('overflow-y-auto', 'max-h-[calc(100cqh-80px)]', s.rtl)}
+    >
       <div
         className={clsx(
           'flex',
