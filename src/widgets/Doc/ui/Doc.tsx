@@ -15,18 +15,34 @@ export const Doc = () => {
   const [isDocOpen, setIsDocsOpen] = useState<boolean>(false);
   const [choosenType, setChoosenType] = useState<string>('');
   const [currDocPart, setCurrDocPart] = useState<DOC_PARTS>(DOC_PARTS.SCHEMA);
-  const [currWidth, setCurrWidth] = useState<number>(MIN_WIDTH);
-
-  const blockRef = useRef<HTMLDivElement>(null);
-
+  const [history, setHistory] = useState<Array<() => void>>([]);
+  console.log(history);
   let component = null;
 
+  const pushHistory = () => {
+    const callback = () => {
+      setCurrDocPart(currDocPart);
+      setChoosenType(choosenType);
+    };
+    setHistory((prev) => [...prev, callback]);
+  };
+
+  const goBack = () => {
+    const cb = history.pop();
+    if (cb) {
+      cb();
+    }
+    setHistory(history);
+  };
+
   const openFields = (typeName: string) => {
+    pushHistory();
     setCurrDocPart(DOC_PARTS.FIELDS);
     setChoosenType(typeName);
   };
 
   const toMain = () => {
+    pushHistory();
     setCurrDocPart(DOC_PARTS.SCHEMA);
   };
 
@@ -52,6 +68,10 @@ export const Doc = () => {
     default:
       component = null;
   }
+
+  // TODO Move to custom hook
+  const [currWidth, setCurrWidth] = useState<number>(MIN_WIDTH);
+  const blockRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: globalThis.MouseEvent) => {
     if (e.clientX < MIN_WIDTH) return;
@@ -110,6 +130,29 @@ export const Doc = () => {
         )}
       >
         {isDocOpen ? 'hide schema' : 'show schema'}
+      </button>
+      <button
+        type="button"
+        onClick={goBack}
+        className={clsx(
+          "content-['show_schema']",
+          '[writing-mode:vertical-lr]',
+          'text-center',
+          'leading-10',
+          'transition-all',
+          'duration-300',
+          isDocOpen
+            ? 'right-0 bg-white text-slate-800 rounded-l-xl'
+            : `-right-10 bg-slate-800 text-white rounded-r-xl ${s.glowing}`,
+          'w-10',
+          'h-40',
+          'absolute',
+          'top-56',
+          'z-10',
+          'select-none',
+        )}
+      >
+        back
       </button>
       <div
         onMouseDown={handleMouseDown}
