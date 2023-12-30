@@ -3,19 +3,16 @@ import { FieldsType } from '@/shared/types/schema';
 import { RootSpinner } from '@/shared/ui/Spinner';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { Button } from '@nextui-org/button';
 import { parseFields } from '../model/fieldsParser';
 import s from './common.module.scss';
 
 type AllFieldsPropsType = {
   fieldName: string;
-  goBack: () => void;
   changeFieldName: (fieldName: string) => void;
 };
 
 export const AllFields = ({
   fieldName,
-  goBack,
   changeFieldName,
 }: AllFieldsPropsType) => {
   const [fields, setFields] = useState<FieldsType>();
@@ -51,29 +48,11 @@ export const AllFields = ({
           s.ltr,
         )}
       >
-        <Button
-          type="button"
-          className={clsx(
-            'text-slate-800',
-            'bg-[#EB9C00]',
-            'shadow-inner',
-            'shadow-md',
-            'leading-9',
-            'w-8',
-            'flex',
-            'justify-center',
-            'items-center',
-          )}
-          onClick={goBack}
-        >
-          <span className="text-xl text-slate-800">Home</span>
-        </Button>
-
         {isLoading ? (
           <RootSpinner />
         ) : (
           <>
-            <h3 className="text-white text-2xl">{fields?.name}</h3>
+            <h3 className="text-white text-2xl pl-5">{fields?.name}</h3>
             <p className="text-white">{fields?.description}</p>
             {filtered?.map((item) => (
               <div key={JSON.stringify(item)}>
