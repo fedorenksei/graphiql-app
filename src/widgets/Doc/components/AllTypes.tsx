@@ -32,7 +32,12 @@ const AllTypes = ({ openFields }: AllTypesProps) => {
 
   return (
     <div
-      className={clsx('select-none', 'max-h-screen', 'overflow-y-auto', s.rtl)}
+      className={clsx(
+        'select-none',
+        'max-h-[calc(100cqh-80px)]',
+        'overflow-y-auto',
+        s.rtl,
+      )}
     >
       <div
         className={clsx(
@@ -45,7 +50,7 @@ const AllTypes = ({ openFields }: AllTypesProps) => {
           s.ltr,
         )}
       >
-        <h1 className="text-white text-2xl pl-5">Main types</h1>
+        <h1 className="text-white text-2xl pl-5">Home</h1>
         {isLoading ? (
           <RootSpinner />
         ) : (
