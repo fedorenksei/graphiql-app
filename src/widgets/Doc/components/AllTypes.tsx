@@ -41,15 +41,16 @@ const AllTypes = ({ openFields }: AllTypesProps) => {
         ) : (
           <div className={clsx('flex', 'flex-col', 'gap-2', 'p-2')}>
             {categories?.map((item) => (
-              <span
-                className="text-[#EB9C00] text-xl cursor-pointer hover:underline underline-offset-2"
-                key={item.name}
-                onClick={() => openFields(item.name)}
-                role="button"
-                tabIndex={0}
-              >
-                {item.name}
-              </span>
+              <div key={item.name}>
+                <span
+                  className="text-[#EB9C00] text-xl cursor-pointer hover:underline underline-offset-2"
+                  onClick={() => openFields(item.name)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  {item.name}
+                </span>
+              </div>
             ))}
           </div>
         )}
