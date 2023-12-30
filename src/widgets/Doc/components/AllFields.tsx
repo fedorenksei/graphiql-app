@@ -38,9 +38,7 @@ export const AllFields = ({
 
   const filtered = parseFields(fields);
 
-  return isLoading ? (
-    <RootSpinner />
-  ) : (
+  return (
     <div className={clsx('overflow-y-auto', 'max-h-screen', s.rtl)}>
       <div
         className={clsx(
@@ -70,32 +68,39 @@ export const AllFields = ({
         >
           <span className="text-xl text-slate-800">Home</span>
         </Button>
-        <h3 className="text-white text-2xl">{fields?.name}</h3>
-        <p className="text-white">{fields?.description}</p>
-        {filtered?.map((item) => (
-          <div key={JSON.stringify(item)}>
-            <div className="pl-2">
-              <span
-                className="text-[#EB9C00] text-xl underline-offset-2"
-                key={item.name}
-              >
-                {item.name}:{' '}
-              </span>
-              <span
-                className="text-[green] text-xl cursor-pointer hover:underline underline-offset-2"
-                key={item.description}
-                onClick={() =>
-                  changeFieldName(item.type.name!.replace(/[[\]]/g, ''))
-                }
-                role="button"
-                tabIndex={0}
-              >
-                {item.type.name}
-              </span>
-            </div>
-            <p className="text-white">{item.description}</p>
-          </div>
-        ))}
+
+        {isLoading ? (
+          <RootSpinner />
+        ) : (
+          <>
+            <h3 className="text-white text-2xl">{fields?.name}</h3>
+            <p className="text-white">{fields?.description}</p>
+            {filtered?.map((item) => (
+              <div key={JSON.stringify(item)}>
+                <div className="pl-2">
+                  <span
+                    className="text-[#EB9C00] text-xl underline-offset-2"
+                    key={item.name}
+                  >
+                    {item.name}:{' '}
+                  </span>
+                  <span
+                    className="text-[green] text-xl cursor-pointer hover:underline underline-offset-2"
+                    key={item.description}
+                    onClick={() =>
+                      changeFieldName(item.type.name!.replace(/[[\]]/g, ''))
+                    }
+                    role="button"
+                    tabIndex={0}
+                  >
+                    {item.type.name}
+                  </span>
+                </div>
+                <p className="text-white">{item.description}</p>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
