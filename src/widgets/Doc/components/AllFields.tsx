@@ -3,7 +3,9 @@ import { FieldsType } from '@/shared/types/schema';
 import { RootSpinner } from '@/shared/ui/Spinner';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
+import { Button } from '@nextui-org/button';
 import { parseFields } from '../model/fieldsParser';
+import s from './common.module.scss';
 
 type AllFieldsPropsType = {
   fieldName: string;
@@ -39,40 +41,62 @@ export const AllFields = ({
   return isLoading ? (
     <RootSpinner />
   ) : (
-    <div className={clsx('flex', 'flex-col', 'gap-2', 'p-2')}>
-      <button
-        type="button"
-        className="text-red-700 text-5xl"
-        onClick={goBack}
+    <div className={clsx('overflow-y-auto', 'max-h-screen', s.rtl)}>
+      <div
+        className={clsx(
+          'flex',
+          'flex-col',
+          'gap-2',
+          'p-2',
+          'pr-11',
+          'select-none',
+          s.ltr,
+        )}
       >
-        &#8592;
-      </button>
-      <h3 className="text-white">{fields?.name}</h3>
-      <p className="text-white">{fields?.description}</p>
-      {filtered?.map((item) => (
-        <div key={JSON.stringify(item)}>
-          <div className="pl-2">
-            <span
-              className="text-[#EB9C00] text-xl underline-offset-2"
-              key={item.name}
-            >
-              {item.name}:{' '}
-            </span>
-            <span
-              className="text-[green] text-xl cursor-pointer hover:underline underline-offset-2"
-              key={item.description}
-              onClick={() =>
-                changeFieldName(item.type.name!.replace(/[[\]]/g, ''))
-              }
-              role="button"
-              tabIndex={0}
-            >
-              {item.type.name}
-            </span>
+        <Button
+          type="button"
+          className={clsx(
+            'text-slate-800',
+            'bg-[#EB9C00]',
+            'shadow-inner',
+            'shadow-md',
+            'leading-9',
+            'w-8',
+            'flex',
+            'justify-center',
+            'items-center',
+          )}
+          onClick={goBack}
+        >
+          <span className="text-xl text-slate-800">Home</span>
+        </Button>
+        <h3 className="text-white text-2xl">{fields?.name}</h3>
+        <p className="text-white">{fields?.description}</p>
+        {filtered?.map((item) => (
+          <div key={JSON.stringify(item)}>
+            <div className="pl-2">
+              <span
+                className="text-[#EB9C00] text-xl underline-offset-2"
+                key={item.name}
+              >
+                {item.name}:{' '}
+              </span>
+              <span
+                className="text-[green] text-xl cursor-pointer hover:underline underline-offset-2"
+                key={item.description}
+                onClick={() =>
+                  changeFieldName(item.type.name!.replace(/[[\]]/g, ''))
+                }
+                role="button"
+                tabIndex={0}
+              >
+                {item.type.name}
+              </span>
+            </div>
+            <p className="text-white">{item.description}</p>
           </div>
-          <p className="text-white">{item.description}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

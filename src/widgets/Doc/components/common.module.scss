@@ -1,0 +1,10 @@
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+}

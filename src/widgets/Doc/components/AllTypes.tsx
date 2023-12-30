@@ -3,6 +3,7 @@ import { DefaultSchemaType } from '@/shared/types/schema';
 import { RootSpinner } from '@/shared/ui/Spinner';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
+import s from './common.module.scss';
 
 type AllTypesProps = {
   openFields: (typeName: string) => void;
@@ -29,21 +30,30 @@ const AllTypes = ({ openFields }: AllTypesProps) => {
     getSchema();
   }, [api]);
 
-  return isLoading ? (
-    <RootSpinner />
-  ) : (
-    <div className={clsx('flex', 'flex-col', 'gap-2', 'p-2')}>
-      {categories?.map((item) => (
-        <span
-          className="text-[#EB9C00] text-xl cursor-pointer hover:underline underline-offset-2"
-          key={item.name}
-          onClick={() => openFields(item.name)}
-          role="button"
-          tabIndex={0}
-        >
-          {item.name}
-        </span>
-      ))}
+  return (
+    <div
+      className={clsx('select-none', 'max-h-screen', 'overflow-y-auto', s.rtl)}
+    >
+      <div className={s.ltr}>
+        <h1 className="text-white text-2xl pt-5 pl-5">Main types</h1>
+        {isLoading ? (
+          <RootSpinner />
+        ) : (
+          <div className={clsx('flex', 'flex-col', 'gap-2', 'p-2')}>
+            {categories?.map((item) => (
+              <span
+                className="text-[#EB9C00] text-xl cursor-pointer hover:underline underline-offset-2"
+                key={item.name}
+                onClick={() => openFields(item.name)}
+                role="button"
+                tabIndex={0}
+              >
+                {item.name}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
