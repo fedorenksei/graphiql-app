@@ -1,3 +1,4 @@
+import { GraphQL } from '@/widgets/GraphQL';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Button } from '@nextui-org/button';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
@@ -19,7 +20,10 @@ export const Main = () => {
       <Link to="/">
         <Button>to Welcome</Button>
       </Link>
-      <Button>TEST</Button>
+      <Link to="/docs">
+        <Button>to Docs</Button>
+      </Link>
+      <GraphQL />
     </div>
   );
 };

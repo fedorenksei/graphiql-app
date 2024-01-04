@@ -6,7 +6,7 @@ export class AppApi {
 
   private url: string;
 
-  private createReqForFieldSchema: (fieldName: string) => void;
+  private createReqForFieldSchema: (fieldName: string) => string;
 
   constructor() {
     this.url =
@@ -73,33 +73,28 @@ export class AppApi {
   }
 
   public async getDefaultSchema() {
-    let data = null;
-
-    try {
-      const res = await fetch(this.url, {
-        method: 'POST',
-        body: JSON.stringify({
-          query: `{__schema {types {name}}}`,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      data = await res.json();
-    } catch (error) {
-      console.log(error);
-    }
-    return data;
+    const res = await this.sendRequest('{__schema {types {name}}}');
+    return res;
   }
 
   public async getFieldSchema(fieldName: string) {
+    const res = await this.sendRequest(this.createReqForFieldSchema(fieldName));
+    return res;
+  }
+
+  public async getResponseForQuery(query: string) {
+    const res = await this.sendRequest(query);
+    return res;
+  }
+
+  private async sendRequest(graphqlQuery: string) {
     let data = null;
 
     try {
       const res = await fetch(this.url, {
         method: 'POST',
         body: JSON.stringify({
-          query: this.createReqForFieldSchema(fieldName),
+          query: graphqlQuery,
         }),
         headers: {
           'Content-Type': 'application/json',
