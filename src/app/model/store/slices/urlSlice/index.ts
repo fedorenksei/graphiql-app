@@ -1,20 +1,27 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { UrlType } from './types';
 
-const initialState: UrlType = {
-  baseUrl: null,
+type State = {
+  baseUrl: string;
+  query: string;
+};
+
+const initialState: State = {
+  baseUrl: '',
+  query: '',
 };
 
 const { reducer, actions } = createSlice({
   name: 'urlSlice',
   initialState,
   reducers: {
-    setUrl: (state, { payload: { baseUrl } }: PayloadAction<UrlType>) => ({
-      ...state,
-      baseUrl,
-    }),
+    setUrl: (state, { payload }: PayloadAction<string>) => {
+      state.baseUrl = payload;
+    },
+    setQuery: (state, { payload }: PayloadAction<string>) => {
+      state.query = payload;
+    },
   },
 });
 
-export const { setUrl } = actions;
+export const { setUrl, setQuery } = actions;
 export default reducer;
