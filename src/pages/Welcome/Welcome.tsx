@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Link } from 'react-router-dom';
 import { Button } from '@nextui-org/button';
-import { LanguageContext } from '../../shared/LanguageProvider';
+import { LanguageContext } from '../../shared/languages/LanguageProvider';
 
 export const Welcome = () => {
   const { language, setLanguage, words } = useContext(LanguageContext);
@@ -11,7 +11,7 @@ export const Welcome = () => {
     <div className="flex flex-col gap-4 h-screen items-center justify-center">
       {words.welcome}
       <Button onClick={() => setLanguage(language === 'en' ? 'ru' : 'en')}>
-        {language === 'en' ? 'Русский' : 'English'}
+        {words.langButton}
       </Button>
       <Link
         className="text-blue-700"

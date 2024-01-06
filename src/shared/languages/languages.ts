@@ -5,10 +5,11 @@ export interface Languages {
 
 const languages: Languages = {
   en: {
+    langButton: 'Русский',
     main: 'to main',
     about: 'About',
     login: 'Login',
-    welcome: 'Welcom page',
+    welcome: 'Welcome page',
     signup: 'Sign up',
     signin: 'Sign in',
     YouLoggedAs: 'You logged in as',
@@ -20,6 +21,7 @@ const languages: Languages = {
     haveAccaunt: 'I`m already have an account',
   },
   ru: {
+    langButton: 'English',
     main: 'на главную',
     about: 'О нас',
     login: 'Вход',

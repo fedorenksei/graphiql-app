@@ -7,15 +7,15 @@ interface LanguageContextType {
   words: Record<string, string>;
 }
 
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
 export const LanguageContext = createContext<LanguageContextType>({
   language: 'en',
   setLanguage: () => {},
   words: languages.en,
 });
-
-interface LanguageProviderProps {
-  children: ReactNode;
-}
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,

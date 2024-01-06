@@ -9,7 +9,7 @@ import { useState, useContext } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { POPUP_NAMES } from '@/shared/constants/popupNames';
 import { SignInFormType } from '../model/types';
-import { LanguageContext } from '../../../shared/LanguageProvider';
+import { LanguageContext } from '../../../shared/languages/LanguageProvider';
 
 export const SignInForm = () => {
   const { words } = useContext(LanguageContext);
