@@ -1,4 +1,4 @@
-import { setUrl } from '@/app/model/store/slices/urlSlice';
+import { setUrl } from '@/app/model/store/slices/requestSlice';
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { Input } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';

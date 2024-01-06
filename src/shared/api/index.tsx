@@ -10,7 +10,7 @@ export class AppApi {
 
   constructor() {
     this.url =
-      store.getState().urlReducer.baseUrl || import.meta.env.VITE_DEFAULT_URL;
+      store.getState().requestSlice.baseUrl || import.meta.env.VITE_DEFAULT_URL;
 
     this.createReqForFieldSchema = (fieldName: string) => {
       return `query IntrospectionQuery {
@@ -82,20 +82,29 @@ export class AppApi {
     return res;
   }
 
-  public async getResponseForQuery(query: string) {
-    const res = await this.sendRequest(query);
+  public async getResponseForQuery({
+    query,
+    variables,
+  }: {
+    query: string;
+    variables?: string;
+  }) {
+    const res = await this.sendRequest(query, variables);
     return res;
   }
 
-  private async sendRequest(graphqlQuery: string) {
+  private async sendRequest(graphqlQuery: string, variables?: string) {
     let data = null;
 
     try {
+      const body: { query: string; variables?: object } = {
+        query: graphqlQuery,
+      };
+      if (variables) body.variables = JSON.parse(variables);
+
       const res = await fetch(this.url, {
         method: 'POST',
-        body: JSON.stringify({
-          query: graphqlQuery,
-        }),
+        body: JSON.stringify(body),
         headers: {
           'Content-Type': 'application/json',
         },

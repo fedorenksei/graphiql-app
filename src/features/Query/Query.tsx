@@ -1,4 +1,4 @@
-import { setQuery } from '@/app/model/store/slices/urlSlice';
+import { setQuery } from '@/app/model/store/slices/requestSlice';
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { Textarea } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
