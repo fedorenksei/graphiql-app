@@ -8,14 +8,14 @@ import { Variables } from '@/features/Variables';
 export const GraphQL = () => {
   return (
     <div>
-      <div className="grid grid-cols-2 gap-5 p-5">
+      <div className="grid grid-cols-[1fr,_auto,_1fr] gap-5 p-5">
         <div className="grid gap-5">
           <BaseUrl />
           <Query />
           <Variables />
           <Headers />
-          <Submit />
         </div>
+        <Submit />
         <Response />
       </div>
     </div>
