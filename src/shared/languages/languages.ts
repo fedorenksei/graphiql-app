@@ -43,6 +43,7 @@ const languages: Languages = {
     [ERROR_NAMES.SERVER]:
       'There seems to be something wrong with the server at the moment',
     [ERROR_NAMES.URL]: 'Check the entered URL',
+    [ERROR_NAMES.LOG_OUT]: 'An error has occurred while logging you out',
     baseUrlPlaceholder: 'Enter a GraphQL URL...',
     queryPlaceholder: 'Enter a GraphQL query...',
     formatButton: 'Format',
@@ -93,6 +94,7 @@ const languages: Languages = {
     3. Выбранное API не поддерживает CORS`,
     [ERROR_NAMES.SERVER]: 'Кажется, в данный момент с сервером что-то не так',
     [ERROR_NAMES.URL]: 'Проверьте введенный URL',
+    [ERROR_NAMES.LOG_OUT]: 'Не удалось выйти из учетной записи',
     baseUrlPlaceholder: 'Введите URL сервиса GraphQL...',
     queryPlaceholder: 'Введите GraphQL запрос...',
     formatButton: 'Форматировать',

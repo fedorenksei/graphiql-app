@@ -1,9 +1,11 @@
+import { openPopup } from '@/app/model/store/slices/popupSlice';
 import { loginUser, logoutUser } from '@/app/model/store/slices/userSlice';
+import { ERROR_NAMES } from '@/shared/constants/errors';
 import {
-  getAuth,
-  signOut,
   createUserWithEmailAndPassword,
+  getAuth,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../hooks';
 
@@ -37,7 +39,9 @@ export const useAuth = () => {
       .then(() => {
         dispatch(logoutUser());
       })
-      .catch(console.error);
+      .catch(() => {
+        dispatch(openPopup({ name: ERROR_NAMES.LOG_OUT }));
+      });
   };
 
   const isAuth = !!uid;
