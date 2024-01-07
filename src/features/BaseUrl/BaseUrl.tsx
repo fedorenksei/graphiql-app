@@ -16,7 +16,7 @@ export const BaseUrl = () => {
 
   return (
     <div>
-      Endpoint
+      {words.endpoint}
       <Input
         placeholder={words.baseUrlPlaceholder}
         {...register('baseUrl', {

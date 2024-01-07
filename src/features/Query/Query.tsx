@@ -18,7 +18,7 @@ export const Query = () => {
 
   return (
     <div>
-      Query
+      {words.query}
       <Textarea
         placeholder={words.queryPlaceholder}
         onChange={onChange}

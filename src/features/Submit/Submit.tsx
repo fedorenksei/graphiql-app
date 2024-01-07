@@ -2,9 +2,11 @@ import { setError, setResponse } from '@/app/model/store/slices/responseSlice';
 import { AppApi } from '@/shared/api';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { Button } from '@nextui-org/button';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { LanguageContext } from '../../shared/languages/LanguageProvider';
 
 export function Submit() {
+  const { words } = useContext(LanguageContext);
   const dispatch = useAppDispatch();
   const baseUrl = useAppSelector((state) => state.requestSlice.baseUrl);
   const query = useAppSelector((state) => state.requestSlice.query);
@@ -35,7 +37,7 @@ export function Submit() {
       isLoading={isLoading}
       isDisabled={!baseUrl || !query}
     >
-      Submit
+      {words.submitButton}
     </Button>
   );
 }

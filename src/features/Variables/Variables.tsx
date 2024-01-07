@@ -19,7 +19,7 @@ export const Variables = () => {
 
   return (
     <div>
-      Variables
+      {words.variables}
       <Textarea
         placeholder={words.variablesPlaceholder}
         {...register('variables', {
