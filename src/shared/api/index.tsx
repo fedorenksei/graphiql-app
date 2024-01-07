@@ -109,12 +109,10 @@ export class AppApi {
         },
       });
 
-      if (res.status === 404) {
-        store.dispatch(openPopup({ name: ERROR_NAMES.URL }));
-      }
-
-      if (res.status === 500) {
+      if (res.status > 500) {
         store.dispatch(openPopup({ name: ERROR_NAMES.SERVER }));
+      } else if (res.status > 400) {
+        store.dispatch(openPopup({ name: ERROR_NAMES.URL }));
       }
 
       data = await res.json();
