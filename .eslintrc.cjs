@@ -43,6 +43,10 @@ module.exports = {
         selector: ['enum', 'enumMember'],
         format: ['UPPER_CASE'],
       },
+      {
+        selector: ['variable'],
+        format: ['UPPER_CASE', 'camelCase', 'PascalCase'],
+      },
     ],
     'no-param-reassign': [
       'error',
