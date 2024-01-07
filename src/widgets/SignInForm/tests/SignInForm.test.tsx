@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 describe('SignIn form tests', () => {
   test('form rendered', async () => {
     render(<App />);
-    const toSignInButton = screen.getByText('Sign in');
+    const toSignInButton = screen.getByRole('link', { name: 'Sign in' });
     await userEvent.click(toSignInButton);
     expect((await screen.findAllByText('Sign in')).length).toBe(3);
     expect(await screen.findByTestId('sign-in-email')).toBeVisible();
@@ -14,14 +14,14 @@ describe('SignIn form tests', () => {
 
   test('btn initially disabled', async () => {
     render(<App />);
-    const toSignInButton = screen.getByRole('button', { name: 'Sign in' });
+    const toSignInButton = screen.getByRole('link', { name: 'Sign in' });
     await userEvent.click(toSignInButton);
     expect(await screen.findByTestId('sign-in-button')).toBeDisabled();
   });
 
   test('form show errors with incorrect input', async () => {
     render(<App />);
-    const toSignInButton = screen.getByRole('button', { name: 'Sign in' });
+    const toSignInButton = screen.getByRole('link', { name: 'Sign in' });
     await userEvent.click(toSignInButton);
     const emailInput = await screen.findByTestId('sign-in-email');
     const passwordInput = await screen.findByTestId('sign-in-password');
@@ -36,7 +36,7 @@ describe('SignIn form tests', () => {
 
   test('form enable button with correct input', async () => {
     render(<App />);
-    const toSignInButton = screen.getByRole('button', { name: 'Sign in' });
+    const toSignInButton = screen.getByRole('link', { name: 'Sign in' });
     await userEvent.click(toSignInButton);
     const emailInput = await screen.findByTestId('sign-in-email');
     const passwordInput = await screen.findByTestId('sign-in-password');

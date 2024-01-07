@@ -1,6 +1,5 @@
 import { useContext } from 'react';
-import { membersData } from './data';
-import { Member } from './ui/Member';
+import { BsGithub } from 'react-icons/bs';
 import { RssLogo } from './ui/RssLogo';
 import { LanguageContext } from '../../shared/languages/LanguageProvider';
 
@@ -20,12 +19,66 @@ export const AboutUs = () => {
           {words.ourTeam}
         </h2>
         <div className="grid grid-cols-[minmax(0,_400px)] justify-center lg:grid-cols-3 gap-4">
-          {membersData.map((member) => (
-            <Member
-              {...member}
-              key={`${member.github}`}
+          <div className="border dark:border-second-text-color rounded-md p-3 flex flex-col gap-4 items-center">
+            <img
+              src="./images/AlekseiFedorenko.png"
+              alt="AlekseiFedorenko"
+              className="w-40 h-40 object-cover rounded-full"
             />
-          ))}
+
+            <h3 className="text-2xl font-bold">{words.aleksei}</h3>
+
+            <a
+              href="https://github.com/fedorenksei"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="flex gap-2 justify-center items-center"
+            >
+              <BsGithub size="1em" /> fedorenksei
+            </a>
+
+            <p>{words.alekseiBio}</p>
+          </div>
+          <div className="border dark:border-second-text-color rounded-md p-3 flex flex-col gap-4 items-center">
+            <img
+              src="./images/DmitriyRomanenkov.jpg"
+              alt="DmitriyRomanenkov"
+              className="w-40 h-40 object-cover rounded-full"
+            />
+
+            <h3 className="text-2xl font-bold">{words.dmitriy}</h3>
+
+            <a
+              href="https://github.com/color-zebra"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="flex gap-2 justify-center items-center"
+            >
+              <BsGithub size="1em" /> color-zebra
+            </a>
+
+            <p>{words.dmitriyBio}</p>
+          </div>
+          <div className="border dark:border-second-text-color rounded-md p-3 flex flex-col gap-4 items-center">
+            <img
+              src="./images/MikalaiTserakhau.png"
+              alt="MikalaiTserakhau"
+              className="w-40 h-40 object-cover rounded-full"
+            />
+
+            <h3 className="text-2xl font-bold">{words.mikalai}</h3>
+
+            <a
+              href="https://github.com/nickbis"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="flex gap-2 justify-center items-center"
+            >
+              <BsGithub size="1em" /> nickbis
+            </a>
+
+            <p>{words.mikalaiBio}</p>
+          </div>
         </div>
       </section>
 

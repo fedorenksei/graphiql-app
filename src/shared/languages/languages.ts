@@ -1,8 +1,8 @@
 import { ERROR_NAMES } from '../constants/errors';
 
 export interface Languages {
-  en: Record<string, string | Record<string, string>>;
-  ru: Record<string, string | Record<string, string>>;
+  en: Record<string, string>;
+  ru: Record<string, string>;
 }
 
 const languages: Languages = {
@@ -46,6 +46,15 @@ const languages: Languages = {
     baseUrlPlaceholder: 'Enter a GraphQL URL...',
     queryPlaceholder: 'Enter a GraphQL query...',
     variablesPlaceholder: 'Enter JSON with GraphQL variables...',
+    aleksei: 'Aleksei Fedorenko',
+    alekseiBio:
+      'I have been developing chatbots on the platform using JavaScript (ES5) for 2 years now. Since December 2022 I have been learning frontend on RSS from stage 0. In this project I have done project creation, documentation (pr template, project setup, read me), UI, GraphQL queries, tests.',
+    dmitriy: 'Dmitriy Romanenkov',
+    dmitriyBio:
+      'I started working as a developer, studied frontend at Rolling Scopes since 2022. In this project I made authorization, query formatting, introspection, documentation request module, UI, tests.',
+    mikalai: 'Mikalai Tserakhau',
+    mikalaiBio:
+      'I work as a specialist in support, repair and sales of computer equipment. I want to become a developer. I like to study frontend in RS from 2022. In this project I made localization of RU/Eng, UI.',
   },
   ru: {
     langButton: 'Eng',
@@ -86,6 +95,15 @@ const languages: Languages = {
     baseUrlPlaceholder: 'Введите URL сервиса GraphQL...',
     queryPlaceholder: 'Введите GraphQL запрос...',
     variablesPlaceholder: 'Введите переменные GraphQL в формате JSON...',
+    aleksei: 'Алексей Федоренко',
+    alekseiBio:
+      'Занимаюсь разработкой чат-ботов на платформе с использованием JavaScript (ES5) уже 2 года. С декабря 2022 года изучаю фронтенд на RSS с этапа 0. В данном проекте выполнил создание проекта, документацию (pr template, project setup, read me), UI, запросы GraphQL, тесты',
+    dmitriy: 'Дмитрий Романенков',
+    dmitriyBio:
+      'Я уже начал работать разработчиком,  изучал фронтенд в Rolling Scopes с 2022 года. В данном проекте сделал авторизацию, форматирование запросов, интроспекцию, модуль запроса документации, UI, тесты.',
+    mikalai: 'Николай Терехов',
+    mikalaiBio:
+      'Я работаю специалистом по поддержке, ремонту и продаже компьютерной техники. Хочу стать разработчиком. Мне нравится изучать frontend в RS с 2022 года. В данном проекте сделал локализацию RU/Eng, UI.',
   },
 };
 

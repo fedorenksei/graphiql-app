@@ -10,7 +10,7 @@ describe('SignUp form tests', () => {
         <App />
       </LanguageProvider>,
     );
-    const toSignUpButton = screen.getByText('Sign up');
+    const toSignUpButton = screen.getByRole('link', { name: 'Sign up' });
     await userEvent.click(toSignUpButton);
     expect((await screen.findAllByText('Sign up')).length).toBe(3);
     expect(await screen.findByTestId('sign-up-email')).toBeVisible();
@@ -20,14 +20,14 @@ describe('SignUp form tests', () => {
 
   test('btn initially disabled', async () => {
     render(<App />);
-    const toSignUpButton = screen.getByRole('button', { name: 'Sign up' });
+    const toSignUpButton = screen.getByRole('link', { name: 'Sign up' });
     await userEvent.click(toSignUpButton);
     expect(await screen.findByTestId('sign-up-button')).toBeDisabled();
   });
 
   test('form show errors with incorrect input', async () => {
     render(<App />);
-    const toSignUpButton = screen.getByRole('button', { name: 'Sign up' });
+    const toSignUpButton = screen.getByRole('link', { name: 'Sign up' });
     await userEvent.click(toSignUpButton);
     const emailInput = await screen.findByTestId('sign-up-email');
     const passwordInput = await screen.findByTestId('sign-up-password');
@@ -45,7 +45,7 @@ describe('SignUp form tests', () => {
 
   test('form enable button with correct input', async () => {
     render(<App />);
-    const toSignUpButton = screen.getByRole('button', { name: 'Sign up' });
+    const toSignUpButton = screen.getByRole('link', { name: 'Sign up' });
     await userEvent.click(toSignUpButton);
     const emailInput = await screen.findByTestId('sign-up-email');
     const passwordInput = await screen.findByTestId('sign-up-password');

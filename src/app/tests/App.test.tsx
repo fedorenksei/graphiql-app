@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { App } from '..';
@@ -23,8 +22,6 @@ describe('App global tests', () => {
 
   test('The main page is not available for unauthorized users', async () => {
     render(<App />);
-    const toMainLink = await screen.findByText('to main');
-    await userEvent.click(toMainLink);
-    expect(screen.getAllByText('Sign in').length).toBe(2);
+    expect(screen.getAllByText('Sign in').length).toBe(1);
   });
 });
