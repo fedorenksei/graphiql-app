@@ -18,7 +18,7 @@ export const Headers = () => {
   };
 
   const addHeader = () => {
-    const newId = headers[headers.length - 1].id + 1;
+    const newId = headers.length ? headers[headers.length - 1].id + 1 : 0;
     const newHeaders = [...headers, { id: newId, key: '', value: '' }];
     setHeaders(newHeaders);
   };
