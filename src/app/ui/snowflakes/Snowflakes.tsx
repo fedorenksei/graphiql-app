@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Snowflakes from 'magic-snowflakes';
 import { useState, useEffect } from 'react';
 
@@ -9,14 +8,16 @@ export const SnowBlock = () => {
     if (!isSnowInit) {
       setIsSnowInit(true);
 
-      const whiteSnow = new Snowflakes({
+      // eslint-disable-next-line no-new
+      new Snowflakes({
         color: '#fff',
         autoResize: false,
         count: 10,
         maxOpacity: 0.8,
         maxSize: 20,
       });
-      const bigSnow = new Snowflakes({
+      // eslint-disable-next-line no-new
+      new Snowflakes({
         color: '#00b4d8',
         autoResize: false,
         count: 5,
