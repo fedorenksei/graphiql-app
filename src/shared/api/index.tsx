@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { openPopup } from '@/app/model/store/slices/popupSlice';
 import { store } from '@/app/model/store/store';
+import { ERROR_NAMES } from '../constants/errors';
 
 export class AppApi {
   static instance: AppApi;
@@ -93,12 +95,12 @@ export class AppApi {
     const { baseUrl } = store.getState().requestSlice;
 
     let data = null;
-    try {
-      const body: { query: string; variables?: object } = {
-        query: graphqlQuery,
-      };
-      if (variables) body.variables = JSON.parse(variables);
+    const body: { query: string; variables?: object } = {
+      query: graphqlQuery,
+    };
+    if (variables) body.variables = JSON.parse(variables);
 
+    try {
       const res = await fetch(baseUrl, {
         method: 'POST',
         body: JSON.stringify(body),
@@ -106,9 +108,22 @@ export class AppApi {
           'Content-Type': 'application/json',
         },
       });
+
+      if (res.status === 404) {
+        store.dispatch(openPopup({ name: ERROR_NAMES.URL }));
+      }
+
+      if (res.status === 500) {
+        store.dispatch(openPopup({ name: ERROR_NAMES.SERVER }));
+      }
+
       data = await res.json();
     } catch (error) {
-      console.log(error);
+      if (error instanceof TypeError) {
+        if (error.message === 'Failed to fetch') {
+          store.dispatch(openPopup({ name: ERROR_NAMES.NETWORK }));
+        }
+      }
     }
     return data;
   }
