@@ -9,6 +9,7 @@ export function Submit() {
   const baseUrl = useAppSelector((state) => state.requestSlice.baseUrl);
   const query = useAppSelector((state) => state.requestSlice.query);
   const variables = useAppSelector((state) => state.requestSlice.variables);
+  const headers = useAppSelector((state) => state.requestSlice.headers);
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
@@ -16,7 +17,7 @@ export function Submit() {
     setIsLoading(true);
     try {
       const api = AppApi.getInstance();
-      const resp = await api.getResponseForQuery({ query, variables });
+      const resp = await api.getResponseForQuery({ query, variables, headers });
       dispatch(setResponse(JSON.stringify(resp)));
       dispatch(setError(''));
     } catch {
