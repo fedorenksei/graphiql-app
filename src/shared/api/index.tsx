@@ -4,14 +4,9 @@ import { store } from '@/app/model/store/store';
 export class AppApi {
   static instance: AppApi;
 
-  private url: string;
-
   private createReqForFieldSchema: (fieldName: string) => string;
 
   constructor() {
-    this.url =
-      store.getState().requestSlice.baseUrl || import.meta.env.VITE_DEFAULT_URL;
-
     this.createReqForFieldSchema = (fieldName: string) => {
       return `query IntrospectionQuery {
         __type(name: "${fieldName}") {
@@ -93,16 +88,18 @@ export class AppApi {
     return res;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private async sendRequest(graphqlQuery: string, variables?: string) {
-    let data = null;
+    const { baseUrl } = store.getState().requestSlice;
 
+    let data = null;
     try {
       const body: { query: string; variables?: object } = {
         query: graphqlQuery,
       };
       if (variables) body.variables = JSON.parse(variables);
 
-      const res = await fetch(this.url, {
+      const res = await fetch(baseUrl, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
