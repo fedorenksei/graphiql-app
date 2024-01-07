@@ -1,3 +1,5 @@
+import { ERROR_NAMES } from '../constants/errors';
+
 export interface Languages {
   en: Record<string, string | Record<string, string>>;
   ru: Record<string, string | Record<string, string>>;
@@ -33,7 +35,15 @@ const languages: Languages = {
     gratitudeTwo:
       ', for her sensitive guidance and support, constant communication, and unwavering belief in our success. We are equally thankful to Rolling Scopes School for organizing the educational process, the dedication of many mentors, lecturers, administrators, volunteers, and active students. Throughout our education and work on this project, we have elevated both our hard and soft skills to an entirely new level and are fueled with motivation to continue growing. Until we meet again!',
     margarita: 'Margaryta Maletz',
-  },
+    error: 'Error!',
+    [ERROR_NAMES.NETWORK]: `Problems with connection. Possible reasons:
+    1. No internet connection
+    2. Invalid URL entered
+    3. The selected API does not support CORS`,
+    [ERROR_NAMES.SERVER]:
+      'There seems to be something wrong with the server at the moment',
+    [ERROR_NAMES.URL]: 'Check the entered URL',
+    },
   ru: {
     langButton: 'Eng',
     main: 'на главную страницу',
@@ -63,6 +73,13 @@ const languages: Languages = {
     gratitudeTwo:
       ', за чуткое руководство и поддержку, постоянное общение и непоколебимую веру в наш успех. Мы также благодарны школе Rolling Scopes за организацию образовательного процесса, самоотверженность многих наставников, преподавателей, администраторов, волонтеров и активных студентов. За время обучения и работы над этим проектом мы подняли свои "hard" и "soft" навыки на совершенно новый уровень и полны мотивации к дальнейшему развитию. До новых встреч!',
     margarita: 'Маргарите Малец',
+    error: 'Ошбика!',
+    [ERROR_NAMES.NETWORK]: `Проблемы с соединением. Возможные причины:
+    1. Нет соединения с интернетом
+    2. Введен неверный URL
+    3. Выбранное API не поддерживает CORS`,
+    [ERROR_NAMES.SERVER]: 'Кажется, в данный момент с сервером что-то не так',
+    [ERROR_NAMES.URL]: 'Проверьте введенный URL',
   },
 };
 

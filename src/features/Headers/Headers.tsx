@@ -1,53 +1,65 @@
+import { setHeaders } from '@/app/model/store/slices/requestSlice';
+import { useAppDispatch } from '@/shared/hooks/hooks';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/react';
 import { useState } from 'react';
+import { UiHeader } from './model/types';
+import { transformHeaders } from './model/transform';
 
 export const Headers = () => {
-  const [headers, setHeaders] = useState([{ id: 0, key: '', value: '' }]);
+  const dispatch = useAppDispatch();
+  const [uiHeaders, setUiHeaders] = useState<UiHeader[]>([
+    { id: 0, name: '', value: '' },
+  ]);
 
-  const handleInputChange = (id: number, key: string, value: string) => {
-    const newHeaders = [...headers];
+  const updateHeaders = (newHeaders: UiHeader[]) => {
+    setUiHeaders(newHeaders);
+    dispatch(setHeaders(transformHeaders(newHeaders)));
+  };
+
+  const handleInputChange = (id: number, name: string, value: string) => {
+    const newHeaders = [...uiHeaders];
 
     const header = newHeaders.filter(
       ({ id: currentId }) => currentId === id,
     )?.[0];
-    header.key = key;
+    header.name = name;
     header.value = value;
 
-    setHeaders(newHeaders);
+    updateHeaders(newHeaders);
   };
 
   const addHeader = () => {
-    const newId = headers.length ? headers[headers.length - 1].id + 1 : 0;
-    const newHeaders = [...headers, { id: newId, key: '', value: '' }];
-    setHeaders(newHeaders);
+    const newId = uiHeaders.length ? uiHeaders[uiHeaders.length - 1].id + 1 : 0;
+    const newHeaders = [...uiHeaders, { id: newId, name: '', value: '' }];
+    updateHeaders(newHeaders);
   };
 
   const removeHeader = (id: number) => {
-    const newHeaders = [...headers];
+    const newHeaders = [...uiHeaders];
     const index = newHeaders.findIndex(({ id: currentId }) => currentId === id);
     newHeaders.splice(index, 1);
-    setHeaders(newHeaders);
+    updateHeaders(newHeaders);
   };
 
   return (
     <div className="space-y-3">
       <p>Headers</p>
       <Button onClick={addHeader}>Add header</Button>
-      {headers.map(({ id, key, value }) => (
+      {uiHeaders.map(({ id, name, value }) => (
         <div
           key={id}
           className="flex gap-2 items-center"
         >
           <Input
             placeholder="Header Key"
-            value={key}
+            value={name}
             onChange={(e) => handleInputChange(id, e.target.value, value)}
           />
           <Input
             placeholder="Header Value"
             value={value}
-            onChange={(e) => handleInputChange(id, key, e.target.value)}
+            onChange={(e) => handleInputChange(id, name, e.target.value)}
           />
           <Button onClick={() => removeHeader(id)}>Remove</Button>
         </div>

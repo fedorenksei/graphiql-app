@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { openPopup } from '@/app/model/store/slices/popupSlice';
 import { store } from '@/app/model/store/store';
+import { ERROR_NAMES } from '../constants/errors';
 
 export class AppApi {
   static instance: AppApi;
@@ -80,35 +82,61 @@ export class AppApi {
   public async getResponseForQuery({
     query,
     variables,
+    headers,
   }: {
     query: string;
     variables?: string;
+    headers?: Record<string, string>;
   }) {
-    const res = await this.sendRequest(query, variables);
+    const res = await this.sendRequest(query, variables, headers);
     return res;
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private async sendRequest(graphqlQuery: string, variables?: string) {
+  private async sendRequest(
+    graphqlQuery: string,
+    variables?: string,
+    headers?: Record<string, string>,
+  ) {
     const { baseUrl } = store.getState().requestSlice;
 
     let data = null;
-    try {
-      const body: { query: string; variables?: object } = {
-        query: graphqlQuery,
-      };
-      if (variables) body.variables = JSON.parse(variables);
+    const body: { query: string; variables?: object } = {
+      query: graphqlQuery,
+    };
+    if (variables) body.variables = JSON.parse(variables);
 
+    const defaultHeaders = {
+      'Content-Type': 'application/json',
+      ...headers,
+    };
+    const finalHeaders = headers
+      ? {
+          ...defaultHeaders,
+          ...headers,
+        }
+      : defaultHeaders;
+
+    try {
       const res = await fetch(baseUrl, {
         method: 'POST',
         body: JSON.stringify(body),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: finalHeaders,
       });
+
+      if (res.status > 500) {
+        store.dispatch(openPopup({ name: ERROR_NAMES.SERVER }));
+      } else if (res.status > 400) {
+        store.dispatch(openPopup({ name: ERROR_NAMES.URL }));
+      }
+
       data = await res.json();
     } catch (error) {
-      console.log(error);
+      if (error instanceof TypeError) {
+        if (error.message === 'Failed to fetch') {
+          store.dispatch(openPopup({ name: ERROR_NAMES.NETWORK }));
+        }
+      }
     }
     return data;
   }

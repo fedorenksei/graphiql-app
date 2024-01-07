@@ -28,23 +28,11 @@ const { reducer, actions } = createSlice({
       state.variables = payload;
     },
 
-    setHeader: (
-      state,
-      {
-        payload: { name, value },
-      }: PayloadAction<{ name: string; value: string }>,
-    ) => {
-      state.headers[name] = value;
-    },
-    deleteHeader: (
-      state,
-      { payload: { name } }: PayloadAction<{ name: string }>,
-    ) => {
-      delete state.headers[name];
+    setHeaders: (state, { payload }: PayloadAction<Record<string, string>>) => {
+      state.headers = payload;
     },
   },
 });
 
-export const { setUrl, setQuery, setVariables, setHeader, deleteHeader } =
-  actions;
+export const { setUrl, setQuery, setVariables, setHeaders } = actions;
 export default reducer;
