@@ -5,11 +5,13 @@ export interface Languages {
 
 const languages: Languages = {
   en: {
-    langButton: 'Русский',
+    langButton: 'Ру',
     main: 'to main',
+    toWelcome: 'to Welcome',
     about: 'About',
     login: 'Login',
     welcome: 'Welcome page',
+    mainPage: 'Main page',
     signup: 'Sign up',
     signin: 'Sign in',
     YouLoggedAs: 'You logged in as',
@@ -19,13 +21,18 @@ const languages: Languages = {
     email: 'email',
     repeatPassword: 'repeat password',
     haveAccaunt: 'I`m already have an account',
+    hideSchema: 'hide schema',
+    showSchema: 'show schema',
+    homeButton: 'Home',
   },
   ru: {
-    langButton: 'English',
-    main: 'на главную',
+    langButton: 'Eng',
+    main: 'на главную страницу',
+    toWelcome: 'на страницу приветсвия',
     about: 'О нас',
     login: 'Вход',
     welcome: 'Страница приветствия',
+    mainPage: 'Главная страница',
     signup: 'Регистрация',
     signin: 'Войти',
     YouLoggedAs: 'Вы вошли как',
@@ -35,6 +42,9 @@ const languages: Languages = {
     email: 'электронная почта',
     repeatPassword: 'повтори пароль',
     haveAccount: 'У меня уже есть аккаунт',
+    hideSchema: 'спрятать схему',
+    showSchema: 'показать схему',
+    homeButton: 'Домой',
   },
 };
 

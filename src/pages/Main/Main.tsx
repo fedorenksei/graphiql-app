@@ -2,11 +2,14 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Button } from '@nextui-org/button';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { POPUP_NAMES } from '@/shared/constants/popupNames';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { Footer } from '@/widgets/Footer';
+import { LanguageContext } from '../../shared/languages/LanguageProvider';
 
 export const Main = () => {
   const { isAuth } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { words } = useContext(LanguageContext);
   useEffect(() => {
     if (!isAuth && !searchParams.get('popup')) {
       searchParams.set('popup', POPUP_NAMES.SIGN_IN);
@@ -14,12 +17,14 @@ export const Main = () => {
     }
   });
   return (
-    <div>
-      Main page
-      <Link to="/">
-        <Button>to Welcome</Button>
-      </Link>
-      <Button>TEST</Button>
-    </div>
+    <>
+      <div className="flex flex-col gap-4 h-screen items-center justify-center">
+        {words.mainPage}
+        <Link to="/">
+          <Button>{words.toWelcome}</Button>
+        </Link>
+      </div>
+      <Footer />
+    </>
   );
 };
