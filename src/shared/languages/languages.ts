@@ -45,6 +45,7 @@ const languages: Languages = {
     [ERROR_NAMES.URL]: 'Check the entered URL',
     baseUrlPlaceholder: 'Enter a GraphQL URL...',
     queryPlaceholder: 'Enter a GraphQL query...',
+    formatButton: 'Format',
     variablesPlaceholder: 'Enter JSON with GraphQL variables...',
     aleksei: 'Aleksei Fedorenko',
     alekseiBio:
@@ -94,6 +95,7 @@ const languages: Languages = {
     [ERROR_NAMES.URL]: 'Проверьте введенный URL',
     baseUrlPlaceholder: 'Введите URL сервиса GraphQL...',
     queryPlaceholder: 'Введите GraphQL запрос...',
+    formatButton: 'Форматировать',
     variablesPlaceholder: 'Введите переменные GraphQL в формате JSON...',
     aleksei: 'Алексей Федоренко',
     alekseiBio:
