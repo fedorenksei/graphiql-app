@@ -2,8 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { PopupType } from './types';
 
 const initialState: PopupType = {
-  name: '',
-  message: '',
+  name: null,
   isShown: false,
 };
 
@@ -12,10 +11,9 @@ const { actions, reducer } = createSlice({
   reducers: {
     openPopup: (
       state,
-      { payload: { message, name } }: PayloadAction<Omit<PopupType, 'isShown'>>,
+      { payload: { name } }: PayloadAction<Omit<PopupType, 'isShown'>>,
     ) => {
       state.isShown = true;
-      state.message = message;
       state.name = name;
     },
     closePopup: (state) => {
