@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Snowflakes from 'magic-snowflakes';
 import { useState, useEffect } from 'react';
 
