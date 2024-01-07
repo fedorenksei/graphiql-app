@@ -1,13 +1,15 @@
 import { setHeaders } from '@/app/model/store/slices/requestSlice';
 import { useAppDispatch } from '@/shared/hooks/hooks';
+import { Collapsible } from '@/shared/ui/Collapsible';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/react';
 import { useState } from 'react';
-import { UiHeader } from './types/types';
 import { transformHeaders } from './model/transform';
+import { UiHeader } from './types/types';
 
 export const Headers = () => {
   const dispatch = useAppDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const [uiHeaders, setUiHeaders] = useState<UiHeader[]>([
     { id: 0, name: '', value: '' },
   ]);
@@ -44,26 +46,34 @@ export const Headers = () => {
 
   return (
     <div className="space-y-3">
-      <p>Headers</p>
-      <Button onClick={addHeader}>Add header</Button>
-      {uiHeaders.map(({ id, name, value }) => (
-        <div
-          key={id}
-          className="flex gap-2 items-center"
-        >
-          <Input
-            placeholder="Header Key"
-            value={name}
-            onChange={(e) => handleInputChange(id, e.target.value, value)}
-          />
-          <Input
-            placeholder="Header Value"
-            value={value}
-            onChange={(e) => handleInputChange(id, name, e.target.value)}
-          />
-          <Button onClick={() => removeHeader(id)}>Remove</Button>
-        </div>
-      ))}
+      <div
+        onClick={() => setIsOpen((v) => !v)}
+        role="presentation"
+        className="cursor-pointer hover:text-blue-700"
+      >
+        <p>Headers</p>
+      </div>
+      <Collapsible isOpen={isOpen}>
+        <Button onClick={addHeader}>Add header</Button>
+        {uiHeaders.map(({ id, name, value }) => (
+          <div
+            key={id}
+            className="flex gap-2 items-center"
+          >
+            <Input
+              placeholder="Header Key"
+              value={name}
+              onChange={(e) => handleInputChange(id, e.target.value, value)}
+            />
+            <Input
+              placeholder="Header Value"
+              value={value}
+              onChange={(e) => handleInputChange(id, name, e.target.value)}
+            />
+            <Button onClick={() => removeHeader(id)}>Remove</Button>
+          </div>
+        ))}
+      </Collapsible>
     </div>
   );
 };
