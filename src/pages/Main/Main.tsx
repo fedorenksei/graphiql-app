@@ -6,6 +6,7 @@ import { POPUP_NAMES } from '@/shared/constants/popupNames';
 import { useEffect, useContext } from 'react';
 import { Footer } from '@/widgets/Footer';
 import { LanguageContext } from '../../shared/languages/LanguageProvider';
+import { Header } from '../Header';
 
 export const Main = () => {
   const { isAuth } = useAuth();
@@ -19,8 +20,9 @@ export const Main = () => {
   });
   return (
     <>
-      <div className="flex flex-col gap-4 h-screen items-center justify-center">
-        {words.mainPage}
+      <Header />
+      <div className="flex flex-col mt-20">
+        <h1>{words.mainPage}</h1>
         <Link to="/">
           <Button>{words.toWelcome}</Button>
         </Link>

@@ -24,6 +24,15 @@ const languages: Languages = {
     hideSchema: 'hide schema',
     showSchema: 'show schema',
     homeButton: 'Home',
+    meetOurAgileTeam: 'Meet our Agile team',
+    aboutUs:
+      'We are a team of three developers, and our project was an educational exercise. We embraced Agile methods, breaking our work into sprints, providing daily updates in our chat, and conducting planning meetings. We maintained open communication to address challenges promptly. With the guidance of our mentor acting as a Scrum Master, we navigated project management effectively.',
+    ourTeam: 'Team members',
+    ourGratitude: 'Our gratitude',
+    gratitudeOne: 'We are very grateful to our mentor',
+    gratitudeTwo:
+      ', for her sensitive guidance and support, constant communication, and unwavering belief in our success. We are equally thankful to Rolling Scopes School for organizing the educational process, the dedication of many mentors, lecturers, administrators, volunteers, and active students. Throughout our education and work on this project, we have elevated both our hard and soft skills to an entirely new level and are fueled with motivation to continue growing. Until we meet again!',
+    margarita: 'Margaryta Maletz',
   },
   ru: {
     langButton: 'Eng',
@@ -45,6 +54,15 @@ const languages: Languages = {
     hideSchema: 'спрятать схему',
     showSchema: 'показать схему',
     homeButton: 'Домой',
+    meetOurAgileTeam: 'Наша Agile-команда',
+    aboutUs:
+      'Мы - команда из трех разработчиков, и наш проект был образовательным. Мы использовали методы Agile, разбив работу на спринты, ежедневно обновляя информацию в чате и проводя совещания по планированию. Мы поддерживали коммуникации для оперативного решения возникающих проблем. Под руководством нашего ментора, выступающего в роли Scrum-мастера, мы эффективно справлялись с управлением проектом.',
+    ourTeam: 'Участники команды',
+    ourGratitude: 'Наша благодарность',
+    gratitudeOne: 'Мы очень благодарны нашему наставнику',
+    gratitudeTwo:
+      ', за чуткое руководство и поддержку, постоянное общение и непоколебимую веру в наш успех. Мы также благодарны школе Rolling Scopes за организацию образовательного процесса, самоотверженность многих наставников, преподавателей, администраторов, волонтеров и активных студентов. За время обучения и работы над этим проектом мы подняли свои "hard" и "soft" навыки на совершенно новый уровень и полны мотивации к дальнейшему развитию. До новых встреч!',
+    margarita: 'Маргарите Малец',
   },
 };
 

@@ -11,7 +11,6 @@ export const routerConfig = [
     path: '/',
     element: (
       <>
-        <Header />
         <Welcome />
         <PopupHandler />
       </>
@@ -21,7 +20,6 @@ export const routerConfig = [
     path: '/main',
     element: (
       <>
-        <Header />
         <Main />
         <PopupHandler />
       </>
