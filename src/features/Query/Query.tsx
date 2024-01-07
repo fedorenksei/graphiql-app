@@ -1,7 +1,7 @@
 import { setQuery } from '@/app/model/store/slices/requestSlice';
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { LanguageContext } from '@/shared/languages/LanguageProvider';
-import { Textarea } from '@nextui-org/react';
+import { Button, Textarea } from '@nextui-org/react';
 import { ChangeEventHandler, useContext, useState } from 'react';
 import { formatQuery } from './model/formatter';
 
@@ -11,14 +11,23 @@ export const Query = () => {
   const [value, setValue] = useState('');
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const formatted = formatQuery(e.target?.value || '');
+    const query = e.target?.value || '';
+    dispatch(setQuery(query));
+    setValue(query);
+  };
+
+  const onFormat = () => {
+    const formatted = formatQuery(value);
     dispatch(setQuery(formatted));
     setValue(formatted);
   };
 
   return (
-    <div>
-      {words.query}
+    <div className="space-y-1">
+      <div className="flex justify-between items-center">
+        <p>{words.query}</p>
+        <Button onClick={onFormat}>{words.formatButton}</Button>
+      </div>
       <Textarea
         placeholder={words.queryPlaceholder}
         onChange={onChange}
