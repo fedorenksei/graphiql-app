@@ -1,3 +1,1 @@
-import { PopupHandlerNoSearchParams } from './ui/popupHandlerNoSearchParams';
-
-export { PopupHandlerNoSearchParams };
+export { PopupHandlerNoSearchParams } from './ui/PopupHandlerNoSearchParams';
