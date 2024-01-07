@@ -8,14 +8,19 @@ import { Variables } from '@/features/Variables';
 export const GraphQL = () => {
   return (
     <div>
-      <div className="grid grid-cols-[1fr,_auto,_1fr] gap-5 p-5">
-        <div className="grid gap-5">
-          <BaseUrl />
-          <Query />
-          <Variables />
-          <Headers />
+      <div className="grid grid-cols-2 gap-5 p-5">
+        <div>
+          <div className="flex items-center justify-between">
+            <h2>Request</h2>
+            <Submit />
+          </div>
+          <div className="flex flex-col gap-5">
+            <BaseUrl />
+            <Query />
+            <Variables />
+            <Headers />
+          </div>
         </div>
-        <Submit />
         <Response />
       </div>
     </div>

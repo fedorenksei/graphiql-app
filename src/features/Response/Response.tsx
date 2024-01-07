@@ -3,12 +3,13 @@ import { useAppSelector } from '@/shared/hooks/hooks';
 export const Response = () => {
   const response = useAppSelector((state) => state.responseSlice.response);
   const error = useAppSelector((state) => state.responseSlice.error);
-  const result = response || error;
+  let result = response || error;
+  if (result) result = JSON.stringify(JSON.parse(result), null, '  ');
 
   return (
     <div>
       Response
-      <p>{result}</p>
+      <pre>{result}</pre>
     </div>
   );
 };
