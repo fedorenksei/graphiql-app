@@ -3,11 +3,13 @@ import { useAppDispatch } from '@/shared/hooks/hooks';
 import { Collapsible } from '@/shared/ui/Collapsible';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { LanguageContext } from '../../shared/languages/LanguageProvider';
 import { transformHeaders } from './model/transform';
 import { UiHeader } from './types/types';
 
 export const Headers = () => {
+  const { words } = useContext(LanguageContext);
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [uiHeaders, setUiHeaders] = useState<UiHeader[]>([
@@ -51,26 +53,26 @@ export const Headers = () => {
         role="presentation"
         className="cursor-pointer hover:text-blue-700"
       >
-        <p>Headers</p>
+        <p>{words.headers}</p>
       </div>
       <Collapsible isOpen={isOpen}>
-        <Button onClick={addHeader}>Add header</Button>
+        <Button onClick={addHeader}>{words.addHeader}</Button>
         {uiHeaders.map(({ id, name, value }) => (
           <div
             key={id}
             className="flex gap-2 items-center"
           >
             <Input
-              placeholder="Header Key"
+              placeholder={words.headerKey}
               value={name}
               onChange={(e) => handleInputChange(id, e.target.value, value)}
             />
             <Input
-              placeholder="Header Value"
+              placeholder={words.headerValue}
               value={value}
               onChange={(e) => handleInputChange(id, name, e.target.value)}
             />
-            <Button onClick={() => removeHeader(id)}>Remove</Button>
+            <Button onClick={() => removeHeader(id)}>{words.remove}</Button>
           </div>
         ))}
       </Collapsible>

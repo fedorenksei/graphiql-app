@@ -25,7 +25,7 @@ export const Query = () => {
   return (
     <div className="space-y-1">
       <div className="flex justify-between items-center">
-        <p>Query</p>
+        <p>{words.query}</p>
         <Button onClick={onFormat}>{words.formatButton}</Button>
       </div>
       <Textarea

@@ -27,7 +27,7 @@ export const Variables = () => {
         role="presentation"
         className="cursor-pointer hover:text-blue-700"
       >
-        Variables
+        {words.variables}
       </div>
       <Collapsible isOpen={isOpen}>
         <Textarea

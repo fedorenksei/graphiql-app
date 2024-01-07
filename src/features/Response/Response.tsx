@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { useAppSelector } from '@/shared/hooks/hooks';
+import { LanguageContext } from '../../shared/languages/LanguageProvider';
 
 export const Response = () => {
+  const { words } = useContext(LanguageContext);
   const response = useAppSelector((state) => state.responseSlice.response);
   const error = useAppSelector((state) => state.responseSlice.error);
   let result = response || error;
@@ -8,7 +11,7 @@ export const Response = () => {
 
   return (
     <div>
-      Response
+      {words.response}
       <pre>{result}</pre>
     </div>
   );
