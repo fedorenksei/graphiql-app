@@ -1,3 +1,5 @@
+import { ERROR_NAMES } from '../constants/errors';
+
 export interface Languages {
   en: Record<string, string>;
   ru: Record<string, string>;
@@ -24,6 +26,14 @@ const languages: Languages = {
     hideSchema: 'hide schema',
     showSchema: 'show schema',
     homeButton: 'Home',
+    error: 'Error!',
+    [ERROR_NAMES.NETWORK]: `Problems with connection. Possible reasons:
+    1. No internet connection
+    2. Invalid URL entered
+    3. The selected API does not support CORS`,
+    [ERROR_NAMES.SERVER]:
+      'There seems to be something wrong with the server at the moment',
+    [ERROR_NAMES.URL]: 'Check the entered URL',
   },
   ru: {
     langButton: 'Eng',
@@ -45,6 +55,13 @@ const languages: Languages = {
     hideSchema: 'спрятать схему',
     showSchema: 'показать схему',
     homeButton: 'Домой',
+    error: 'Ошбика!',
+    [ERROR_NAMES.NETWORK]: `Проблемы с соединением. Возможные причины:
+    1. Нет соединения с интернетом
+    2. Введен неверный URL
+    3. Выбранное API не поддерживает CORS`,
+    [ERROR_NAMES.SERVER]: 'Кажется, в данный момент с сервером что-то не так',
+    [ERROR_NAMES.URL]: 'Проверьте введенный URL',
   },
 };
 
