@@ -24,9 +24,9 @@ export const Main = () => {
         <Link to="/">
           <Button>{words.toWelcome}</Button>
         </Link>
-        <Link to="/docs">
-          <Button>to Docs</Button>
-        </Link>
+      <Link to="/docs">
+        <Button>to Docs</Button>
+      </Link>
       </div>
       <GraphQL />
       <Footer />
