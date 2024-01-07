@@ -1,9 +1,7 @@
-import { Header } from '@/pages/Header';
 import { Main } from '@/pages/Main';
+import { NotFound } from '@/pages/NotFound';
 import { Welcome } from '@/pages/Welcome';
 import { createBrowserRouter } from 'react-router-dom';
-import { NotFound } from '@/pages/NotFound';
-import { Docs } from '@/pages/Docs';
 import { PopupHandler } from './popupHandler/ui/PopupHandler';
 import { PopupHandlerNoSearchParams } from './popupHandlerNoSearchParams';
 
@@ -24,15 +22,6 @@ export const routerConfig = [
         <Main />
         <PopupHandler />
         <PopupHandlerNoSearchParams />
-      </>
-    ),
-  },
-  {
-    path: '/docs',
-    element: (
-      <>
-        <Header />
-        <Docs />
       </>
     ),
   },

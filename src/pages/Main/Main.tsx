@@ -21,16 +21,18 @@ export const Main = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col mt-20">
-        <h1>{words.mainPage}</h1>
-        <Link to="/">
-          <Button>{words.toWelcome}</Button>
+      <div className="p-12">
+        <div className="flex flex-col mt-20">
+          <h1>{words.mainPage}</h1>
+          <Link to="/">
+            <Button>{words.toWelcome}</Button>
+          </Link>
+        </div>
+        <Link to="/docs">
+          <Button>to Docs</Button>
         </Link>
+        <GraphQL />
       </div>
-      <Link to="/docs">
-        <Button>to Docs</Button>
-      </Link>
-      <GraphQL />
       <Footer />
     </>
   );

@@ -108,6 +108,7 @@ export const Doc = () => {
       className={clsx(
         'absolute',
         'top-0',
+        'left-0',
         !isDocOpen && '-translate-x-full',
         'min-h-screen',
         'transition-all',
@@ -116,6 +117,8 @@ export const Doc = () => {
         'font-mono',
         'max-w-full',
         'select-none',
+        'pt-[60px]',
+        'z-20',
       )}
     >
       <button
@@ -134,7 +137,7 @@ export const Doc = () => {
           'w-10',
           'h-40',
           'absolute',
-          'top-10',
+          'top-32',
           'z-10',
           'select-none',
         )}
@@ -144,7 +147,7 @@ export const Doc = () => {
       <div
         onMouseDown={handleMouseDown}
         draggable={false}
-        className="h-52 absolute right-1 top-[220px] w-[8px] cursor-col-resize"
+        className="h-52 absolute right-1 top-[320px] w-[8px] cursor-col-resize"
       >
         <div className="border-r border-l border-warning h-full w-[4px] mx-auto" />
       </div>

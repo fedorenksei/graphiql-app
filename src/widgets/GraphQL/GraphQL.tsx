@@ -4,10 +4,12 @@ import { Query } from '@/features/Query';
 import { Response } from '@/features/Response';
 import { Submit } from '@/features/Submit';
 import { Variables } from '@/features/Variables';
+import { Doc } from '../Doc';
 
 export const GraphQL = () => {
   return (
-    <div>
+    <div className="grid grid-cols-[auto,_1fr]">
+      <Doc />
       <div className="grid grid-cols-2 gap-5 p-5">
         <div>
           <div className="flex items-center justify-between">
