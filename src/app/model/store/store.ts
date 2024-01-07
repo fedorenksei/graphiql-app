@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice/index';
-import urlReducer from './slices/urlSlice/index';
+import requestSlice from './slices/requestSlice/index';
+import responseSlice from './slices/responseSlice/index';
 
 const reducers = combineReducers({
   userReducer,
-  urlReducer,
+  requestSlice,
+  responseSlice,
 });
 
 export const store = configureStore({
