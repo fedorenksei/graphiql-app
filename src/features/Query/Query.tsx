@@ -1,23 +1,25 @@
 import { setQuery } from '@/app/model/store/slices/requestSlice';
 import { useAppDispatch } from '@/shared/hooks/hooks';
 import { Textarea } from '@nextui-org/react';
-import { useForm } from 'react-hook-form';
-
-type FormFields = {
-  query: string;
-};
+import { ChangeEventHandler, useState } from 'react';
+import { formatQuery } from './model/formatter';
 
 export const Query = () => {
   const dispatch = useAppDispatch();
-  const { register } = useForm<FormFields>({});
+  const [value, setValue] = useState('');
+
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const formatted = formatQuery(e.target?.value || '');
+    dispatch(setQuery(formatted));
+    setValue(formatted);
+  };
 
   return (
     <div>
       Query
       <Textarea
-        {...register('query', {
-          onChange: (e) => dispatch(setQuery(e.target.value)),
-        })}
+        onChange={onChange}
+        value={value}
       />
     </div>
   );
