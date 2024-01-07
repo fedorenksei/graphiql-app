@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { NotFound } from '@/pages/NotFound';
 import { Docs } from '@/pages/Docs';
 import { PopupHandler } from './popupHandler/ui/PopupHandler';
+import { PopupHandlerNoSearchParams } from './popupHandlerNoSearchParams';
 
 export const routerConfig = [
   {
@@ -24,6 +25,7 @@ export const routerConfig = [
         <Header />
         <Main />
         <PopupHandler />
+        <PopupHandlerNoSearchParams />
       </>
     ),
   },
