@@ -28,9 +28,6 @@ export const Main = () => {
             <Button>{words.toWelcome}</Button>
           </Link>
         </div>
-        <Link to="/docs">
-          <Button>to Docs</Button>
-        </Link>
         <GraphQL />
       </div>
       <Footer />

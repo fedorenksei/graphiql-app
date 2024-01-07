@@ -55,6 +55,7 @@ const languages: Languages = {
     mikalai: 'Mikalai Tserakhau',
     mikalaiBio:
       'I work as a specialist in support, repair and sales of computer equipment. I want to become a developer. I like to study frontend in RS from 2022. In this project I made localization of RU/Eng, UI.',
+    request: 'Request',
   },
   ru: {
     langButton: 'Eng',
@@ -104,6 +105,7 @@ const languages: Languages = {
     mikalai: 'Николай Терехов',
     mikalaiBio:
       'Я работаю специалистом по поддержке, ремонту и продаже компьютерной техники. Хочу стать разработчиком. Мне нравится изучать frontend в RS с 2022 года. В данном проекте сделал локализацию RU/Eng, UI.',
+    request: 'Запрос',
   },
 };
 
