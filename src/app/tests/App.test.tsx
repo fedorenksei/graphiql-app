@@ -22,8 +22,6 @@ describe('App global tests', () => {
 
   test('The main page is not available for unauthorized users', async () => {
     render(<App />);
-    // const toMainLink = await screen.findByText('to main');
-    // await userEvent.click(toMainLink);
     expect(screen.getAllByText('Sign in').length).toBe(1);
   });
 });
