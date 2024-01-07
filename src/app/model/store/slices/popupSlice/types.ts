@@ -1,5 +1,6 @@
+import { ERROR_NAMES } from '@/shared/constants/errors';
+
 export type PopupType = {
-  name: string;
-  message: string;
+  name: ERROR_NAMES | null;
   isShown: boolean;
 };
