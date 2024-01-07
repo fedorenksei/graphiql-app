@@ -1,6 +1,8 @@
 import { setVariables } from '@/app/model/store/slices/requestSlice';
 import { useAppDispatch } from '@/shared/hooks/hooks';
+import { LanguageContext } from '@/shared/languages/LanguageProvider';
 import { Textarea } from '@nextui-org/react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 
 type FormFields = {
@@ -8,6 +10,7 @@ type FormFields = {
 };
 
 export const Variables = () => {
+  const { words } = useContext(LanguageContext);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -18,6 +21,7 @@ export const Variables = () => {
     <div>
       Variables
       <Textarea
+        placeholder={words.variablesPlaceholder}
         {...register('variables', {
           onChange: (e) => dispatch(setVariables(e.target.value)),
           validate: (value) => {

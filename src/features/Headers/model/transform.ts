@@ -1,4 +1,4 @@
-import { UiHeader } from './types';
+import { UiHeader } from '../types/types';
 
 export const transformHeaders = (
   uiHeaders: UiHeader[],

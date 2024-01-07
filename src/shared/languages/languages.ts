@@ -43,6 +43,9 @@ const languages: Languages = {
     [ERROR_NAMES.SERVER]:
       'There seems to be something wrong with the server at the moment',
     [ERROR_NAMES.URL]: 'Check the entered URL',
+    baseUrlPlaceholder: 'Enter a GraphQL URL...',
+    queryPlaceholder: 'Enter a GraphQL query...',
+    variablesPlaceholder: 'Enter JSON with GraphQL variables...',
   },
   ru: {
     langButton: 'Eng',
@@ -80,6 +83,9 @@ const languages: Languages = {
     3. Выбранное API не поддерживает CORS`,
     [ERROR_NAMES.SERVER]: 'Кажется, в данный момент с сервером что-то не так',
     [ERROR_NAMES.URL]: 'Проверьте введенный URL',
+    baseUrlPlaceholder: 'Введите URL сервиса GraphQL...',
+    queryPlaceholder: 'Введите GraphQL запрос...',
+    variablesPlaceholder: 'Введите переменные GraphQL в формате JSON...',
   },
 };
 

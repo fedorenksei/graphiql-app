@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/shared/hooks/hooks';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/react';
 import { useState } from 'react';
-import { UiHeader } from './model/types';
+import { UiHeader } from './types/types';
 import { transformHeaders } from './model/transform';
 
 export const Headers = () => {
