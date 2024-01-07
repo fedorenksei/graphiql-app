@@ -1,8 +1,8 @@
 import { ERROR_NAMES } from '../constants/errors';
 
 export interface Languages {
-  en: Record<string, string | Record<string, string>>;
-  ru: Record<string, string | Record<string, string>>;
+  en: Record<string, string>;
+  ru: Record<string, string>;
 }
 
 const languages: Languages = {
