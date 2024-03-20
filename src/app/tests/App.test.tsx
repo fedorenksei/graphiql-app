@@ -5,9 +5,9 @@ import { App } from '..';
 import { routerConfig } from '../model/router';
 
 describe('App global tests', () => {
-  test('App hust rendered', () => {
+  test('App renders', () => {
     render(<App />);
-    expect(screen.getByText(/welcome/i)).toBeVisible();
+    expect(screen.getByText(/meet our agile team/i)).toBeVisible();
   });
 
   test('404 page shown if landing bad route', () => {

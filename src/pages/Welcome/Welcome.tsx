@@ -1,23 +1,18 @@
-import { useContext } from 'react';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
-import { Link } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
-import { Footer } from '@/widgets/Footer';
-import { AboutUs } from '../AboutUs';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { LanguageContext } from '../../shared/languages/LanguageProvider';
-import { Header } from '../Header';
+import { AboutUs } from '../AboutUs';
 
 export const Welcome = () => {
   const { words } = useContext(LanguageContext);
-  const { isAuth, email, logout } = useAuth();
+  const { isAuth, email } = useAuth();
   return (
     <>
-      <Header />
-      <div className="flex flex-col gap-4 mt-8 px-20 items-end justify-center bg-slate-800 text-white ">
-        {words.welcome}
-
+      <div className="flex flex-col gap-4 pt-20 px-20 items-end justify-center bg-slate-800 text-white ">
         {!isAuth && (
-          <>
+          <div className="flex gap-2">
             <Link
               className="text-blue-700"
               to="/?popup=sign-up"
@@ -30,35 +25,22 @@ export const Welcome = () => {
             >
               <Button>{words.signin}</Button>
             </Link>
-          </>
+          </div>
         )}
         {isAuth && (
           <>
-            <Link
-              className="text-blue-700"
-              to="/main"
-            >
+            <h3>
+              {words.YouLoggedAs} {email}
+            </h3>
+            <Link to="/main">
               <Button color="success">{words.main}</Button>
             </Link>
-            <div className="flex flex-col border-2 border-green-700">
-              <h3>
-                {words.YouLoggedAs} {email}
-              </h3>
-              <button
-                className="bg-orange-600 rounded-md"
-                type="button"
-                onClick={logout}
-              >
-                {words.Logout}
-              </button>
-            </div>
           </>
         )}
       </div>
       <div className="bg-slate-800">
         <AboutUs />
       </div>
-      <Footer />
     </>
   );
 };
