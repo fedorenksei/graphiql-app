@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { Provider } from 'react-redux';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { describe, expect, test } from 'vitest';
 import { App } from '..';
 import { routerConfig } from '../model/router';
+import { store } from '../model/store/store';
 
 describe('App global tests', () => {
   test('App renders', () => {
@@ -15,7 +17,11 @@ describe('App global tests', () => {
       initialEntries: ['/veryveryverybadroute'],
     });
 
-    render(<RouterProvider router={router} />);
+    render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>,
+    );
 
     expect(screen.getByText('Page not found')).toBeVisible();
   });
