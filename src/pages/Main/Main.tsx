@@ -1,17 +1,14 @@
-import { GraphQL } from '@/widgets/GraphQL';
-import { Link, useSearchParams } from 'react-router-dom';
-import { Button } from '@nextui-org/button';
-import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { POPUP_NAMES } from '@/shared/constants/popupNames';
-import { useEffect, useContext } from 'react';
+import { useAuth } from '@/shared/hooks/useAuth/useAuth';
 import { Footer } from '@/widgets/Footer';
-import { LanguageContext } from '../../shared/languages/LanguageProvider';
+import { GraphQL } from '@/widgets/GraphQL';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Header } from '../Header';
 
 export const Main = () => {
   const { isAuth } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { words } = useContext(LanguageContext);
   useEffect(() => {
     if (!isAuth && !searchParams.get('popup')) {
       searchParams.set('popup', POPUP_NAMES.SIGN_IN);
@@ -21,13 +18,7 @@ export const Main = () => {
   return (
     <>
       <Header />
-      <div className="p-12">
-        <div className="flex flex-col mt-20">
-          <h1>{words.mainPage}</h1>
-          <Link to="/">
-            <Button>{words.toWelcome}</Button>
-          </Link>
-        </div>
+      <div className="p-12 mt-20">
         <GraphQL />
       </div>
       <Footer />

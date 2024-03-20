@@ -8,7 +8,7 @@ export interface Languages {
 const languages: Languages = {
   en: {
     langButton: 'Ру',
-    main: 'to main',
+    main: 'Try GQL request!',
     toWelcome: 'to Welcome',
     about: 'About',
     login: 'Login',
@@ -16,7 +16,7 @@ const languages: Languages = {
     mainPage: 'Main page',
     signup: 'Sign up',
     signin: 'Sign in',
-    YouLoggedAs: 'You logged in as',
+    YouLoggedAs: 'You are logged in as',
     Logout: 'Logout',
     password: 'password',
     dontAccount: 'I don`t have an account',

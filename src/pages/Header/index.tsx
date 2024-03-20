@@ -26,23 +26,20 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed z-30 top-0 w-full flex px-2 shadow-md ${
+      className={`fixed z-30 top-0 w-full flex px-2 shadow-md transition ${
         isScrolled
           ? ' py-2  bg-slate-900/75 -translate-y-1 '
           : ' py-4  bg-slate-900 '
       }`}
     >
-      <div className="max-w-7xl w-full flex  items-center">
+      <div className="max-w-7xl w-full flex items-center gap-2">
         {!isScrolled && (
           <div className=" text-blue-500 hover:text-blue-900 transition text-2xl font-bold min-w-[8rem]">
             GraphiQL
           </div>
         )}
         <Link to="/">
-          <Button
-            isIconOnly
-            className="mx-1"
-          >
+          <Button isIconOnly>
             <BsHouse />
           </Button>
         </Link>
@@ -56,13 +53,15 @@ export const Header = () => {
       </div>
 
       {isAuth && (
-        <Button
-          className="bg-orange-600"
-          type="button"
-          onClick={logout}
-        >
-          {words.Logout}
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            className="bg-orange-600"
+            type="button"
+            onClick={logout}
+          >
+            {words.Logout}
+          </Button>
+        </div>
       )}
     </header>
   );
