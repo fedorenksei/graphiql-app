@@ -6,7 +6,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <NextUIProvider>
+    <NextUIProvider className="h-full">
       <App />
     </NextUIProvider>
   </React.StrictMode>,

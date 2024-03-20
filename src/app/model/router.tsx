@@ -11,11 +11,13 @@ export const routerConfig = [
   {
     path: '',
     element: (
-      <>
+      <div className="flex flex-col h-full">
         <Header />
-        <Outlet />
+        <div className="flex-grow">
+          <Outlet />
+        </div>
         <Footer />
-      </>
+      </div>
     ),
     children: [
       {
