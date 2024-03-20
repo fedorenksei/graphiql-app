@@ -101,7 +101,7 @@ export const SignUpForm = () => {
             type="submit"
             data-testid="sign-up-button"
           >
-            {words.signup}
+            {words.submitButton}
           </Button>
           {!!error && (
             <span className="absolute bottom-8 text-center w-full text-red-600 text-[14px]">
