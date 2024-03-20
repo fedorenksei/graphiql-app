@@ -1,10 +1,10 @@
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
+import { LanguageProvider } from '../../shared/languages/LanguageProvider';
+import '../model/firebase/firebase';
 import { router } from '../model/router';
 import { store } from '../model/store/store';
-import { LanguageProvider } from '../../shared/languages/LanguageProvider';
 import './App.css';
-import '../model/firebase/firebase';
 import { SnowBlock } from './snowflakes/Snowflakes';
 
 export const App = () => {
