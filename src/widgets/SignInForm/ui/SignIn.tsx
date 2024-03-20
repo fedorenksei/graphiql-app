@@ -89,7 +89,7 @@ export const SignInForm = () => {
             className="mb-8"
             type="submit"
           >
-            {words.signin}
+            {words.submitButton}
           </Button>
           {!!error && (
             <span className="absolute bottom-8 text-center w-full text-red-600 text-[14px]">

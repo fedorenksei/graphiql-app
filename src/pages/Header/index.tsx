@@ -1,11 +1,12 @@
-import { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@nextui-org/react';
-import { BsHouse } from 'react-icons/bs';
 import { useAuth } from '@/shared/hooks/useAuth/useAuth';
+import { Button } from '@nextui-org/react';
+import { useContext, useEffect, useState } from 'react';
+import { BsHouse } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 import { LanguageContext } from '../../shared/languages/LanguageProvider';
 
 export const Header = () => {
+  const navigate = useNavigate();
   const { language, setLanguage, words } = useContext(LanguageContext);
   const { isAuth, logout } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,11 +39,12 @@ export const Header = () => {
             GraphiQL
           </div>
         )}
-        <Link to="/">
-          <Button isIconOnly>
-            <BsHouse />
-          </Button>
-        </Link>
+        <Button
+          onClick={() => navigate('/')}
+          isIconOnly
+        >
+          <BsHouse />
+        </Button>
         <Button
           color="primary"
           isIconOnly
